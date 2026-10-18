@@ -3,190 +3,277 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sync Our Soul</title>
+<title>Sync Our Soul - Final</title>
 <style>
-/* ========= CSS ========= */
-:root { --bg-color: #0b0f19; --card-bg: #151c2c; --accent-color: #e11d48; --accent-hover: #be123c; --text-color: #f8fafc; --subtext: #94a3b8; --border-color: #2a364f; --gold: #fbbf24; }
+:root{--bg:#0b0f19;--card:#151c2c;--accent:#e11d48;--gold:#fbbf24;--border:#2a364f;--sub:#94a3b8}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg-color);color:var(--text-color);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:15px}
-.container{width:100%;max-width:550px;background:var(--card-bg);padding:30px;border-radius:24px;border:1px solid var(--border-color)}
-h1{text-align:center;color:var(--accent-color);font-size:2.2rem} .tagline{text-align:center;color:var(--gold);font-weight:600;margin-bottom:20px;text-transform:uppercase}
-.intro-box{background:rgba(15,23,42,.6);padding:18px;border-radius:14px;border-left:4px solid var(--accent-color);margin-bottom:25px;color:#cbd5e1}
-label{display:block;font-size:.9rem;font-weight:600;margin-top:15px;margin-bottom:6px;color:var(--subtext)}
-input[type="text"]{width:100%;padding:14px;border-radius:12px;border:1.5px solid var(--border-color);background:#0b0f19;color:white;outline:none}
-.btn{width:100%;background:var(--accent-color);color:white;border:none;padding:16px;border-radius:12px;font-size:1rem;cursor:pointer;margin-top:15px;font-weight:700}
-.btn-secondary{background:#334155} .progress-bar-container{width:100%;background:#0b0f19;height:8px;border-radius:10px;margin-bottom:20px;overflow:hidden}
-.progress-bar{height:100%;width:0%;background:var(--accent-color);transition:width .3s ease}
-.option-btn{background:#0b0f19;color:var(--text-color);border:1.5px solid var(--border-color);padding:14px;border-radius:12px;margin-bottom:12px;text-align:left;width:100%;cursor:pointer}
-.option-btn.selected{border-color:var(--accent-color);background:rgba(225,29,72,.15);font-weight:600}
-.hidden{display:none!important} .category-badge{display:inline-block;background:rgba(251,191,36,.15);color:var(--gold);padding:6px 14px;border-radius:20px;font-size:.85rem;font-weight:600;margin-bottom:15px}
-.question-title{font-size:1.2rem;margin-bottom:20px} .status-box{background:#0b0f19;padding:14px;border-radius:12px;text-align:center;color:var(--subtext);font-size:.9rem;margin-top:15px;border:1px dashed var(--accent-color)}
-.room-display{background:#0b0f19;padding:15px;border-radius:12px;text-align:center;font-size:1.3rem;font-weight:bold;color:var(--gold);letter-spacing:2px;margin:10px 0;border:1px solid var(--border-color)}
-.result-card{background:#0b0f19;padding:18px;border-radius:14px;margin-top:15px;border-left:4px solid var(--accent-color)}
-.score-banner{text-align:center;background:linear-gradient(135deg,#e11d48,#881337);padding:22px;border-radius:16px;margin-bottom:20px} .score-banner h2{font-size:2.4rem}
+body{font-family:Segoe UI,system-ui;background:var(--bg);color:#fff;display:flex;justify-content:center;padding:12px}
+.container{width:100%;max-width:580px;background:var(--card);padding:20px;border-radius:24px;border:1px solid var(--border)}
+h1{text-align:center;color:var(--accent);font-size:26px}
+.tag{color:var(--gold);text-align:center;margin:8px 0 15px;font-size:13px}
+input{width:100%;padding:13px;border-radius:12px;background:#0b0f19;border:1.5px solid var(--border);color:#fff;margin-bottom:8px}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;margin-top:8px}
+.btn-sec{background:#334155}
+.mode-btn{display:block;width:100%;padding:14px;margin:8px 0;border-radius:12px;border:1px solid var(--border);background:#0b0f19;color:#fff;cursor:pointer;text-align:left}
+.mode-btn:hover{border-color:var(--accent)}
+.hidden{display:none!important}
+.room{background:#0b0f19;padding:12px;text-align:center;color:var(--gold);font-weight:bold;letter-spacing:2px;border-radius:12px;border:1px solid var(--border);margin:10px 0}
+.progress{width:100%;height:8px;background:#0b0f19;border-radius:10px;overflow:hidden;margin-bottom:12px}
+.bar{height:100%;width:0%;background:var(--accent);transition:.3s}
+.opt{background:#0b0f19;border:1.5px solid var(--border);padding:12px;border-radius:12px;margin-bottom:8px;width:100%;text-align:left;color:#fff;cursor:pointer}
+.opt.sel{border-color:var(--accent);background:rgba(225,29,72,.15)}
+.box{background:#0b0f19;padding:12px;border-radius:12px;border:1px solid var(--border);margin-top:8px}
 </style>
 </head>
 <body>
 <div class="container">
-  <div id="welcome-screen">
+  <!-- AUTH -->
+  <div id="home">
     <h1>✨ Sync Our Soul</h1>
-    <p class="tagline">Espas Entim ak Kominikasyon pou Koup</p>
-    <label>Non pa w:</label><input type="text" id="user-name" placeholder="Antre non w">
-    <div style="margin-top:20px;display:flex;gap:10px;">
-      <button class="btn" id="btn-create">Lanse Yon Nouvo Chanm</button>
-      <button class="btn btn-secondary" id="btn-show-join">Rantre ak yon Kòd</button>
+    <p class="tag">100 Kesyon | Pwofil ak Password | Solo & Koup</p>
+    
+    <div id="auth-box" class="box">
+      <h3 style="text-align:center;margin-bottom:10px">👤 Kont mwen</h3>
+      <input id="user-name" type="text" placeholder="Non ou ex Jean">
+      <input id="user-pass" type="password" placeholder="Password ex 1234">
+      <div style="display:flex;gap:8px">
+        <button class="btn" style="flex:1" onclick="register()">Kreye kont</button>
+        <button class="btn btn-sec" style="flex:1" onclick="login()">Konekte</button>
+      </div>
+      <p id="auth-msg" style="text-align:center;margin-top:8px;color:var(--gold);font-size:13px"></p>
     </div>
-    <div id="join-code-box" class="hidden" style="margin-top:15px;">
-      <input type="text" id="join-room-code" placeholder="SYNC-XXXX">
-      <button class="btn" id="btn-join">Rantre</button>
+
+    <div id="game-buttons" class="hidden">
+      <p id="welcome" style="text-align:center;color:#22c55e;margin:10px 0"></p>
+      
+      <label style="font-size:13px;color:var(--sub)">Konbyen kesyon ou vle jwe?</label>
+      <select id="q-count" style="width:100%;padding:12px;border-radius:10px;background:#0b0f19;border:1px solid var(--border);color:#fff;margin:5px 0 10px">
+        <option value="10">10 Kesyon - Rapid</option>
+        <option value="20" selected>20 Kesyon - Nomal</option>
+        <option value="50">50 Kesyon - Pwofon</option>
+        <option value="100">100 Kesyon - Total</option>
+      </select>
+
+      <button class="mode-btn" onclick="setMode('couple')">💑 JWE AK KOUP - Kreye chanm</button>
+      <button class="mode-btn" onclick="setMode('solo')">🧘 JWE SOLO - Gerizon tet ou</button>
+      <button class="mode-btn" onclick="showProfile()">📜 PWOFL MWEN - Istorik</button>
+      <button class="mode-btn" onclick="logout()" style="border-color:#e11d48">🚪 Dekonekte</button>
+
+      <div style="margin-top:12px">
+        <input id="join-code" placeholder="SYNC-XXXX pou rantre nan chanm patne w">
+        <button class="btn btn-sec" onclick="joinRoom()">Rantre ak Kod</button>
+      </div>
     </div>
   </div>
-  <div id="invite-screen" class="hidden">
-    <h2 style="text-align:center;color:var(--accent-color)">Chanm Vityèl Ou Pare!</h2>
-    <div id="generated-room-code" class="room-display">SYNC-XXXX</div>
-    <button class="btn" id="btn-copy">📋 Kopye Envitasyon WhatsApp</button>
-    <button class="btn btn-secondary" id="btn-start" style="margin-top:10px;">Kòmanse Kounye a 👉</button>
+
+  <!-- INVITE -->
+  <div id="invite" class="hidden">
+    <h2 style="text-align:center;color:var(--accent)">Chanm Pare!</h2>
+    <div id="code" class="room">SYNC-XXXX</div>
+    <button class="btn btn-sec" onclick="copyInvite()">📋 Kopye Envitasyon</button>
+    <button class="btn" onclick="startCouple()">Komanse Jwet la 👉</button>
+    <button class="btn btn-sec" onclick="location.reload()">Retounen</button>
   </div>
-  <div id="game-screen" class="hidden">
-    <div class="progress-bar-container"><div id="progress-bar" class="progress-bar"></div></div>
-    <span id="category-title" class="category-badge"></span>
-    <h2 id="question-text" class="question-title"></h2>
-    <div id="options-container"></div>
-    <div id="custom-answer-box" class="hidden"><input type="text" id="custom-input" placeholder="Ekri pwòp repons pa w la..."></div>
-    <button class="btn" id="submitBtn">Valide Repons Mwen</button>
-    <div id="status-waiting" class="status-box hidden">⏳ Repons ou anrejistre! N ap tann patnè w la...</div>
+
+  <!-- GAME -->
+  <div id="game" class="hidden">
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <span id="cat" style="font-size:12px;color:var(--gold)"></span>
+    <h2 id="qtext" style="margin:12px 0;font-size:18px"></h2>
+    <div id="opts"></div>
+    <div id="customBox" class="hidden"><input id="customInput" placeholder="Ekri pa w..."></div>
+    <button class="btn" id="submit">Valide repons lan</button>
+    <div id="wait" class="hidden" style="text-align:center;margin-top:10px;color:var(--sub)">⏳ Ap tann patne w...</div>
   </div>
-  <div id="results-screen" class="hidden">
-    <h1>🎉 Soul Sync Bilan</h1>
-    <div class="score-banner"><h2 id="score-text">100%</h2><p>Nivo Aliyman nou</p></div>
-    <div id="final-summary"></div>
-    <button class="btn" onclick="location.reload()" style="background:#334155;margin-top:20px">Fè Yon Lòt Sesyon</button>
+
+  <!-- RESULT -->
+  <div id="result" class="hidden">
+    <h1 style="text-align:center">🎉 Bilan</h1>
+    <div id="score" style="text-align:center;background:linear-gradient(135deg,#e11d48,#881337);padding:18px;border-radius:16px;margin:12px 0"></div>
+    <div id="summary"></div>
+    <button class="btn" onclick="location.reload()">Rekomanse</button>
+    <button class="btn btn-sec" onclick="showProfile()">We Pwofil mwen</button>
   </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>
-// ========= 1. CONFIG - Firebase =========
-const firebaseConfig = { databaseURL: "https://syncoursoul-default-rtdb.firebaseio.com" };
+const firebaseConfig={databaseURL:"https://syncoursoul-default-rtdb.firebaseio.com"};
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const db=firebase.database();
 
-// ========= 2. QUESTIONS - pa chaje index la ankò =========
-const localQuestions = [
-  { cat:"🧠 Santiman", q:"Lè m pran yon ti tan san m pa ekri w, kisa ki vin nan tèt ou?", opts:["M konprann ou okipe","M kòmanse enkyete m","M santi m manke w anpil","Ekri pa m"] },
-  { cat:"🔥 Érotisme", q:"Kisa ki pi eksite w lè nou pa ansanm?", opts:["Apèl vidyo san tabou","Ti mesaj cho / vokal","Sonje pi bon moman kabann nou","Ekri pa m"] },
-  { cat:"💬 Kominikasyon", q:"Kijan ou prefere nou rezoud yon ti kont?", opts:["Pale fas a fas kalm","Ekri pou evite blese","Pran yon poz epi tounen pale","Ekri pa m"] },
-  { cat:"🌱 Konfyans", q:"Kisa ki fè w santi w plis an sekirite?", opts:["Lè w di m sa w santi vre","Aksyon chak jou","Fidèl ak transparan","Ekri pa m"] },
-  { cat:"💖 Langaj Lanmou", q:"Kijan ou santi w pi renmen?", opts:["Mo dous","Kado ak atansyon","Tan kalite san telefòn","Ekri pa m"] },
-  { cat:"🔥 Dezir Kache", q:"Yon bagay ou ta renmen eseye avè m?", opts:["Jwèt wòl / fantasme","Yon kote diferan","Pale pi sal pandan entimite","Ekri pa m"] },
-  { cat:"🏠 Fiti", q:"Kote ou wè nou nan 2 an?", opts:["Abite ansanm / marye","Bati biznis ansanm","Vwayaje mond lan","Ekri pa m"] },
-  { cat:"😡 Limit", q:"Kisa ki ka fè w fache nèt?", opts:["Manti","Mank respè devan moun","Mank atansyon","Ekri pa m"] },
-  { cat:"🌙 Entimite", q:"Ki moman ou te santi w pi konekte avè m?", opts:["Lè nou te kriye / ri ansanm","Apre lanmou nou pale","Lè ou te soutni m","Ekri pa m"] },
-  { cat:"✨ Sipriz", q:"Ki sipriz ki ta fè kè w bat pi fò?", opts:["Yon vwayaj","Yon lèt lanmou","Yon nwit jis pou nou de","Ekri pa m"] },
-];
+let currentUser=null, currentRoom="", isHost=false, qIndex=0, allQuestions=[], answers=[], mode="solo";
 
-// ========= 3. DATABASE - tout apèl Firebase yo =========
-const DB = {
-  createRoom: (code, name) => db.ref("rooms/"+code).set({status:"waiting", qIndex:0, p1_name:name}),
-  getQuestions: async () => {
-    try{ const s=await db.ref("questions").once("value"); if(s.exists()) return Object.values(s.val()); }catch(e){}
-    return localQuestions;
-  },
-  saveAnswer: (room, qi, pKey, data) => db.ref(`rooms/${room}/answers/q${qi}/${pKey}`).set(data),
-  listenQIndex: (room, cb) => db.ref("rooms/"+room+"/qIndex").on("value", s=>{ if(s.val()!==null) cb(s.val()); }),
-  listenAnswers: (room, cb) => db.ref("rooms/"+room+"/answers").on("value", s=> cb(s.val())),
-  setNext: (room, next) => db.ref("rooms/"+room+"/qIndex").set(next)
-};
-
-// ========= 4. APP - lojik la =========
-let currentRoom="", userName="", selectedOptionIndex=null, isHost=false, currentQIndex=0, allQuestions=[];
-
-document.getElementById("btn-create").onclick=createNewRoom;
-document.getElementById("btn-show-join").onclick=()=>document.getElementById("join-code-box").classList.toggle("hidden");
-document.getElementById("btn-join").onclick=joinRoomWithCode;
-document.getElementById("btn-copy").onclick=copyInvitation;
-document.getElementById("btn-start").onclick=startGameSession;
-document.getElementById("submitBtn").onclick=submitAnswer;
-
-function createNewRoom(){
-  userName=document.getElementById("user-name").value.trim();
-  if(!userName) return alert("Antre non w!");
-  isHost=true;
-  currentRoom="SYNC-"+Math.floor(1000+Math.random()*9000);
-  document.getElementById("generated-room-code").innerText=currentRoom;
-  document.getElementById("welcome-screen").classList.add("hidden");
-  document.getElementById("invite-screen").classList.remove("hidden");
-  DB.createRoom(currentRoom, userName);
+function register(){
+  let name=document.getElementById("user-name").value.trim();
+  let pass=document.getElementById("user-pass").value.trim();
+  if(!name || !pass) return alert("Mete non ak password");
+  if(pass.length<4) return alert("Password dwe gen omwen 4 karakte");
+  db.ref("users/"+name+"/profile").once("value").then(s=>{
+    if(s.exists()){ document.getElementById("auth-msg").innerText="Non sa deja pran, fe Konekte"; return; }
+    db.ref("users/"+name+"/profile").set({name:name,password:pass,created:Date.now(),lastSeen:Date.now()}).then(()=>{
+      currentUser=name; document.getElementById("auth-msg").innerText="Kont kreye! Byenveni "+name; unlock();
+    });
+  });
 }
-function joinRoomWithCode(){
-  userName=document.getElementById("user-name").value.trim();
-  const code=document.getElementById("join-room-code").value.trim().toUpperCase();
-  if(!userName||!code) return alert("Antre non ak kòd!");
-  currentRoom=code; isHost=false; startGameSession();
+function login(){
+  let name=document.getElementById("user-name").value.trim();
+  let pass=document.getElementById("user-pass").value.trim();
+  if(!name || !pass) return alert("Mete non ak password");
+  db.ref("users/"+name+"/profile").once("value").then(s=>{
+    if(!s.exists()){ document.getElementById("auth-msg").innerText="Kont pa jwenn"; return; }
+    if(s.val().password!==pass){ document.getElementById("auth-msg").innerText="Password pa bon"; return; }
+    currentUser=name;
+    db.ref("users/"+name+"/profile/lastSeen").set(Date.now());
+    document.getElementById("auth-msg").innerText="Byenveni "+name;
+    unlock();
+  });
 }
-function copyInvitation(){
-  const link=location.href.split('?')[0]+"?room="+currentRoom;
-  const txt=`Cheri, mwen envite w nan ✨ Sync Our Soul ✨\nKòd: *${currentRoom}*\nLyen: ${link}`;
-  navigator.clipboard.writeText(txt).then(()=>alert("Envitasyon kopye!"));
+function unlock(){
+  document.getElementById("game-buttons").classList.remove("hidden");
+  document.getElementById("welcome").innerText="Konekte kòm "+currentUser+" ✅";
+  document.getElementById("auth-box").style.borderColor="#22c55e";
+  localStorage.setItem("sync_user", currentUser);
 }
-async function startGameSession(){
-  allQuestions=await DB.getQuestions();
-  document.getElementById("welcome-screen").classList.add("hidden");
-  document.getElementById("invite-screen").classList.add("hidden");
-  document.getElementById("game-screen").classList.remove("hidden");
-  DB.listenQIndex(currentRoom, idx=>{ currentQIndex=idx; loadQuestion(idx); });
-  DB.listenAnswers(currentRoom, all=>{
-    if(!all) return;
-    const cur=all["q"+currentQIndex];
-    if(cur && cur.p1 && cur.p2){
-      const next=currentQIndex+1;
-      if(next<allQuestions.length){ if(isHost) DB.setNext(currentRoom,next); }
-      else{ showFinalResults(all); }
+function logout(){
+  currentUser=null; localStorage.removeItem("sync_user");
+  document.getElementById("game-buttons").classList.add("hidden");
+  document.getElementById("auth-box").style.borderColor="var(--border)";
+  document.getElementById("auth-msg").innerText="Dekonekte";
+  document.getElementById("user-name").value=""; document.getElementById("user-pass").value="";
+}
+function setMode(m){
+  mode=m;
+  let count=parseInt(document.getElementById("q-count").value);
+  db.ref("questions").once("value").then(s=>{
+    let all=Object.values(s.val()||{});
+    if(all.length===0) return alert("Pa gen kesyon nan Firebase");
+    // filtre selon mode
+    if(m==="solo") all=all.filter(q=>q.type==="solo"||q.type==="both");
+    allQuestions=all.sort(()=>0.5-Math.random()).slice(0,count);
+    if(m==="couple"){
+      currentRoom="SYNC-"+Math.floor(1000+Math.random()*9000);
+      isHost=true;
+      document.getElementById("code").innerText=currentRoom;
+      document.getElementById("home").classList.add("hidden");
+      document.getElementById("invite").classList.remove("hidden");
+      db.ref("rooms/"+currentRoom).set({qIndex:0,p1_name:currentUser,questions:allQuestions});
+    } else {
+      document.getElementById("home").classList.add("hidden");
+      document.getElementById("game").classList.remove("hidden");
+      qIndex=0; answers=[]; loadQ();
     }
   });
-  loadQuestion(0);
 }
-function loadQuestion(idx){
-  const qData=allQuestions[idx];
-  document.getElementById("progress-bar").style.width=((idx+1)/allQuestions.length*100)+"%";
-  document.getElementById("category-title").innerText=`${qData.cat} (${idx+1}/${allQuestions.length})`;
-  document.getElementById("question-text").innerText=qData.q;
-  const cont=document.getElementById("options-container"); cont.innerHTML="";
-  selectedOptionIndex=null;
-  document.getElementById("custom-answer-box").classList.add("hidden");
-  document.getElementById("status-waiting").classList.add("hidden");
-  document.getElementById("submitBtn").disabled=false;
-  document.getElementById("custom-input").value="";
-  qData.opts.forEach((opt,i)=>{
-    const b=document.createElement("button"); b.className="option-btn"; b.innerText=opt;
-    b.onclick=()=>{ document.querySelectorAll(".option-btn").forEach(x=>x.classList.remove("selected")); b.classList.add("selected"); selectedOptionIndex=i; if(i===3) document.getElementById("custom-answer-box").classList.remove("hidden"); else document.getElementById("custom-answer-box").classList.add("hidden"); };
-    cont.appendChild(b);
+function joinRoom(){
+  let code=document.getElementById("join-code").value.trim().toUpperCase();
+  if(!code || !currentUser) return alert("Konekte epi mete kod SYNC-XXXX");
+  currentRoom=code; isHost=false;
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  db.ref("rooms/"+currentRoom).once("value").then(s=>{
+    if(!s.exists()) return alert("Chanm pa jwenn");
+    allQuestions=s.val().questions||[];
+    listenCouple(); loadQ();
   });
 }
-function submitAnswer(){
-  if(selectedOptionIndex===null) return alert("Chwazi yon opsyon!");
-  const custom=document.getElementById("custom-input").value.trim();
-  const pKey=isHost?"p1":"p2";
-  DB.saveAnswer(currentRoom, currentQIndex, pKey, {option:selectedOptionIndex, text:selectedOptionIndex===3?custom:"", name:userName, time:Date.now()});
-  document.getElementById("status-waiting").classList.remove("hidden");
-  document.getElementById("submitBtn").disabled=true;
+function startCouple(){
+  document.getElementById("invite").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+  listenCouple(); loadQ();
 }
-function showFinalResults(all){
-  document.getElementById("game-screen").classList.add("hidden");
-  document.getElementById("results-screen").classList.remove("hidden");
+function listenCouple(){
+  db.ref("rooms/"+currentRoom+"/qIndex").on("value",s=>{ if(s.val()!==null){ qIndex=s.val(); loadQ(); }});
+  db.ref("rooms/"+currentRoom+"/answers").on("value",s=>{
+    let all=s.val(); if(!all) return;
+    let cur=all["q"+qIndex];
+    if(cur && cur.p1 && cur.p2){
+      let next=qIndex+1;
+      if(next<allQuestions.length){ if(isHost) db.ref("rooms/"+currentRoom+"/qIndex").set(next); }
+      else { showCoupleResult(all); }
+    }
+  });
+}
+let sel=null;
+function loadQ(){
+  if(qIndex>=allQuestions.length){ if(mode==="solo") showSoloResult(); return; }
+  let q=allQuestions[qIndex];
+  document.getElementById("bar").style.width=((qIndex+1)/allQuestions.length*100)+"%";
+  document.getElementById("cat").innerText=q.cat+" ("+(qIndex+1)+"/"+allQuestions.length+")";
+  document.getElementById("qtext").innerText=q.q;
+  let cont=document.getElementById("opts"); cont.innerHTML=""; sel=null;
+  document.getElementById("customBox").classList.add("hidden");
+  document.getElementById("wait").classList.add("hidden");
+  document.getElementById("submit").disabled=false;
+  q.opts.forEach((o,i)=>{
+    let b=document.createElement("button"); b.className="opt"; b.innerText=o;
+    b.onclick=()=>{ document.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel")); b.classList.add("sel"); sel=i;
+      if(i===3) document.getElementById("customBox").classList.remove("hidden"); else document.getElementById("customBox").classList.add("hidden");
+    }; cont.appendChild(b);
+  });
+}
+document.getElementById("submit").onclick=()=>{
+  if(sel===null) return alert("Chwazi yon repons");
+  let custom=document.getElementById("customInput").value.trim();
+  if(mode==="solo"){
+    answers.push({q:allQuestions[qIndex],opt:sel,text:custom});
+    qIndex++; if(qIndex<allQuestions.length) loadQ(); else showSoloResult();
+    document.getElementById("customInput").value=""; return;
+  }
+  let key=isHost?"p1":"p2";
+  db.ref(`rooms/${currentRoom}/answers/q${qIndex}/${key}`).set({opt:sel,text:custom,name:currentUser});
+  document.getElementById("wait").classList.remove("hidden");
+  document.getElementById("submit").disabled=true;
+  document.getElementById("customInput").value="";
+};
+function showSoloResult(){
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+  let html=""; answers.forEach(a=>{ html+=`<div class="box" style="border-left:4px solid var(--gold)"><b>${a.q.cat} - ${a.q.q}</b><br>Repons: ${a.q.opts[a.opt]} ${a.text?" => "+a.text:""}</div>`; });
+  document.getElementById("score").innerHTML=`Analiz Solo - ${answers.length} repons<br><small>${currentUser} sou wout gerizon</small>`;
+  document.getElementById("summary").innerHTML=html;
+  db.ref(`users/${currentUser}/history`).push({date:Date.now(),mode:"solo",score:answers.length,total:allQuestions.length});
+}
+function showCoupleResult(all){
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
   let html="", same=0;
   Object.keys(all).forEach(k=>{
-    const qa=all[k]; const qi=parseInt(k.replace("q","")); const q=allQuestions[qi];
-    if(qa.p1.option===qa.p2.option) same++;
-    html+=`<div class="result-card"><h3 style="color:var(--gold)">${q.cat} - ${q.q}</h3><p><strong>${qa.p1.name}:</strong> ${q.opts[qa.p1.option]} ${qa.p1.text?`→ "${qa.p1.text}"`:``}</p><p><strong>${qa.p2.name}:</strong> ${q.opts[qa.p2.option]} ${qa.p2.text?`→ "${qa.p2.text}"`:``}</p></div>`;
+    let qa=all[k]; let qi=parseInt(k.replace("q","")); let q=allQuestions[qi];
+    if(qa.p1.opt===qa.p2.opt) same++;
+    html+=`<div class="box" style="border-left:4px solid var(--accent)"><b>${q.q}</b><br>${qa.p1.name}: ${q.opts[qa.p1.opt]} ${qa.p1.text?" => "+qa.p1.text:""}<br>${qa.p2.name}: ${q.opts[qa.p2.opt]} ${qa.p2.text?" => "+qa.p2.text:""}</div>`;
   });
-  document.getElementById("score-text").innerText=Math.round((same/allQuestions.length)*100)+"%";
-  document.getElementById("final-summary").innerHTML=html;
+  let pct=Math.round(same/allQuestions.length*100);
+  document.getElementById("score").innerHTML=`${pct}% Konpatibilite<br><small>${same} repons menm sou ${allQuestions.length}</small>`;
+  document.getElementById("summary").innerHTML=html;
+  db.ref(`users/${currentUser}/history`).push({date:Date.now(),mode:"couple",score:pct,total:allQuestions.length,room:currentRoom});
+}
+function showProfile(){
+  if(!currentUser){ let saved=localStorage.getItem("sync_user"); if(saved) currentUser=saved; else return alert("Konekte dabor"); }
+  db.ref("users/"+currentUser).once("value").then(s=>{
+    if(!s.exists()) return alert("Pwofil pa jwenn");
+    let data=s.val(); let hist=data.history?Object.values(data.history):[];
+    let html=`<div class="box"><b>Non:</b> ${data.profile.name}<br><b>Kreye:</b> ${new Date(data.profile.created).toLocaleString()}<br><b>Total jwet:</b> ${hist.length}</div>`;
+    hist.reverse().slice(0,20).forEach(h=>{
+      html+=`<div class="box">${new Date(h.date).toLocaleString()} - ${h.mode} - Score ${h.score}/${h.total||h.totalQuestions||"?"} ${h.room?" - "+h.room:""}</div>`;
+    });
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("score").innerHTML=`Pwofil ${currentUser}`;
+    document.getElementById("summary").innerHTML=html;
+  });
+}
+function copyInvite(){
+  let link=location.href.split("?")[0]+"?room="+currentRoom;
+  navigator.clipboard.writeText("Antre nan Sync Our Soul! Kod: "+currentRoom+" Lien: "+link).then(()=>alert("Envitasyon kopye!"));
 }
 window.onload=()=>{
-  const p=new URLSearchParams(location.search).get('room');
-  if(p){ document.getElementById("join-code-box").classList.remove("hidden"); document.getElementById("join-room-code").value=p; }
+  let saved=localStorage.getItem("sync_user");
+  if(saved){ document.getElementById("user-name").value=saved; document.getElementById("auth-msg").innerText="Dènye itilizatè: "+saved+" - mete password ou epi Konekte"; }
+  let p=new URLSearchParams(location.search).get("room");
+  if(p) document.getElementById("join-code").value=p;
 };
 </script>
 </body>
