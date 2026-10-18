@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sync Our Soul - Terapi Koup ak Kominikasyon Entim</title>
+  <title>Sync Our Soul - Eksperyans Koup ak Kominikasyon</title>
   <style>
     :root {
       --bg-color: #0b0f19;
@@ -14,8 +14,6 @@
       --subtext: #94a3b8;
       --border-color: #2a364f;
       --gold: #fbbf24;
-      --green: #10b981;
-      --purple: #a855f7;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +31,7 @@
 
     .container {
       width: 100%;
-      max-width: 600px;
+      max-width: 550px;
       background: var(--card-bg);
       padding: 30px;
       border-radius: 24px;
@@ -41,8 +39,21 @@
       border: 1px solid var(--border-color);
     }
 
-    h1 { text-align: center; color: var(--accent-color); font-size: 2.2rem; margin-bottom: 6px; }
-    .tagline { text-align: center; color: var(--gold); font-size: 0.95rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; }
+    h1 {
+      text-align: center;
+      color: var(--accent-color);
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      text-align: center;
+      color: var(--gold);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
 
     .intro-box {
       background: rgba(15, 23, 42, 0.6);
@@ -55,160 +66,238 @@
       color: #cbd5e1;
     }
 
-    label { display: block; font-size: 0.9rem; font-weight: 600; margin-top: 15px; margin-bottom: 6px; color: var(--subtext); }
-    input[type="text"], select {
-      width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid var(--border-color);
-      background: #0b0f19; color: white; font-size: 0.95rem; outline: none;
+    .benefits-list { margin: 15px 0; padding-left: 20px; }
+    .benefits-list li { margin-bottom: 8px; color: #e2e8f0; }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      color: var(--subtext);
     }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-color);
+      background: #0b0f19;
+      color: white;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
     input[type="text"]:focus, select:focus { border-color: var(--accent-color); }
 
     .btn {
-      width: 100%; background: var(--accent-color); color: white; border: none; padding: 16px;
-      border-radius: 12px; font-size: 1rem; cursor: pointer; margin-top: 15px; font-weight: 700; transition: all 0.2s ease;
+      width: 100%;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 700;
+      transition: all 0.2s ease;
     }
+
     .btn:hover { background: var(--accent-hover); }
     .btn-secondary { background: #334155; }
     .btn-secondary:hover { background: #475569; }
-    .btn-green { background: var(--green); }
-    .btn-green:hover { background: #059669; }
 
-    .progress-bar-container { width: 100%; background: #0b0f19; height: 8px; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-    .progress-bar { height: 100%; width: 0%; background: var(--accent-color); transition: width 0.3s ease; }
+    .progress-bar-container {
+      width: 100%;
+      background: #0b0f19;
+      height: 8px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
 
     .option-btn {
-      background: #0b0f19; color: var(--text-color); border: 1.5px solid var(--border-color);
-      padding: 14px; border-radius: 12px; margin-bottom: 12px; text-align: left; width: 100%; cursor: pointer; font-size: 0.95rem; line-height: 1.4;
+      background: #0b0f19;
+      color: var(--text-color);
+      border: 1.5px solid var(--border-color);
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
+
     .option-btn:hover { border-color: var(--accent-color); }
-    .option-btn.selected { border-color: var(--accent-color); background: rgba(225, 29, 72, 0.15); font-weight: 600; }
+    .option-btn.selected {
+      border-color: var(--accent-color);
+      background: rgba(225, 29, 72, 0.15);
+      font-weight: 600;
+    }
 
     .hidden { display: none !important; }
-    .category-badge { display: inline-block; background: rgba(251, 191, 36, 0.15); color: var(--gold); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; }
+
+    .category-badge {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
     .question-title { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.5; }
 
-    .status-box { background: #0b0f19; padding: 14px; border-radius: 12px; text-align: center; color: var(--gold); font-size: 0.95rem; margin-top: 15px; border: 1px dashed var(--accent-color); }
-    .room-display { background: #0b0f19; padding: 15px; border-radius: 12px; text-align: center; font-size: 1.3rem; font-weight: bold; color: var(--gold); letter-spacing: 2px; margin: 10px 0; border: 1px solid var(--border-color); }
+    .status-box {
+      background: #0b0f19;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      color: var(--subtext);
+      font-size: 0.9rem;
+      margin-top: 15px;
+      border: 1px dashed var(--accent-color);
+    }
 
-    .result-card { background: #0b0f19; padding: 18px; border-radius: 14px; margin-top: 15px; border-left: 4px solid var(--purple); }
-    .result-card h3 { color: var(--purple); font-size: 1.1rem; margin-bottom: 8px; }
-    .score-banner { text-align: center; background: linear-gradient(135deg, #e11d48, #881337); padding: 22px; border-radius: 16px; margin-bottom: 20px; }
+    .room-display {
+      background: #0b0f19;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin: 10px 0;
+      border: 1px solid var(--border-color);
+    }
+
+    .result-card {
+      background: #0b0f19;
+      padding: 18px;
+      border-radius: 14px;
+      margin-top: 15px;
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .score-banner {
+      text-align: center;
+      background: linear-gradient(135deg, #e11d48, #881337);
+      padding: 22px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
     .score-banner h2 { font-size: 2.4rem; color: white; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- PAJ 1: AKÈY & SEKSYON RELASYON -->
+  <!-- PAJ 1: AKÈY -->
   <div id="welcome-screen">
     <h1>✨ Sync Our Soul</h1>
-    <p class="tagline">Espas Entim, Plezi ak Kominikasyon</p>
+    <p class="tagline">Espas Entim ak Kominikasyon pou Koup</p>
     
     <div class="intro-box">
-      <p><strong>🔥 Plis pase 150 kesyon ki disponib nan baz done a!</strong></p>
+      <p><strong>Yon voyaj nan fon kè relasyon nou:</strong></p>
       <p style="margin-top: 6px;">
-        Chwazi nivo relasyon nou an. Chak fwa n ap jwe, sistèm nan ap chwazi <strong>6 kesyon oza</strong> nan kategori a pou toujou kenbe sesyon an fre, enteresan ak komik.
+        <strong>Sync Our Soul</strong> se yon eksperyans ki baze sou terapi koup pou ede nou kase silans yo, re-enkande flanm pasyon an, epi pi byen konprann sa k nan fon nanm youn lòt.
       </p>
+      <ul class="benefits-list">
+        <li>✨ <strong>Kominikasyon Pwofon:</strong> Eksprese sa w santi san jijman.</li>
+        <li>🔥 <strong>Érotisme ak Intimité:</strong> Eksplore dezirè nou an libète.</li>
+        <li>🌱 <strong>Vizyon pou Fiti la:</strong> Bati pi bon konpatiblite.</li>
+      </ul>
     </div>
 
-    <!-- RANTRE AK KÒD -->
-    <div id="join-box" class="hidden">
-      <div style="background: rgba(225, 29, 72, 0.15); padding: 15px; border-radius: 12px; border: 1px solid var(--accent-color); margin-bottom: 15px;">
-        <p style="text-align: center; color: var(--gold); font-weight: 600;" id="invitation-text-header">
-          📩 Antre non w pou w rantre nan sesyon an!
-        </p>
-      </div>
+    <label for="user-name">Non pa w / Siyen an:</label>
+    <input type="text" id="user-name" placeholder="Antre non w">
 
-      <label for="user-name-join">Non pa w / Siyen an:</label>
-      <input type="text" id="user-name-join" placeholder="Antre non w">
+    <label for="distance-range">Ki kote nou chak abite an mwayèn?</label>
+    <select id="distance-range">
+      <option value="same_house">🏠 N ap viv nan menm kay la</option>
+      <option value="near">🏙️ Menm vil / Ti distans (Mwens pase 8 km)</option>
+      <option value="medium">🚗 Zòn diferan (Eks: Ant 8 km ak 50 km)</option>
+      <option value="far">✈️ Relasyon a gwo distans (Plis pase 50 km / Lòt peyi)</option>
+    </select>
 
-      <label for="room-code-input">Kòd Envitasyon an:</label>
-      <input type="text" id="room-code-input" placeholder="Eks: SYNC-8492">
-
-      <button class="btn btn-green" onclick="joinWithCode()">Rantre nan Sesyon an</button>
-      <button class="btn btn-secondary" onclick="showCreateBox()" style="margin-top: 10px;">Oswa Kreye Yon Nouvo Sesyon</button>
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+      <button class="btn" onclick="createNewRoom()">Lanse Yon Nouvo Chanm</button>
+      <button class="btn btn-secondary" onclick="showJoinInput()">Rantre ak yon Kòd</button>
     </div>
 
-    <!-- KREYE CHANM -->
-    <div id="create-box">
-      <label for="user-name-create">Non pa w / Siyen an:</label>
-      <input type="text" id="user-name-create" placeholder="Antre non w">
-
-      <label for="relation-section">Chwazi Seksyon / Vibe Relasyon an:</label>
-      <select id="relation-section">
-        <option value="friendship">🤝 Zanmitay / Konplis ak Ti Komedi</option>
-        <option value="dating">❤️ Mennaj / Lanmou a Distans</option>
-        <option value="sexfriends">🔥 Sèks & Intimité (Cho & Pasyone)</option>
-        <option value="marriage">💍 Madanm / Mari (Fwaye & Fiti)</option>
-      </select>
-
-      <button class="btn" onclick="createNewRoom()">Lanse Envitasyon Koup</button>
-      <button class="btn btn-secondary" onclick="showJoinBox()" style="margin-top: 10px;">Mwen gen yon kòd envitasyon deja</button>
+    <div id="join-code-box" class="hidden" style="margin-top: 15px;">
+      <input type="text" id="join-room-code" placeholder="Antre Kòd Envitasyon an (eg: SYNC-8492)">
+      <button class="btn" onclick="joinRoomWithCode()">Rantre nan Chanm lan</button>
     </div>
   </div>
 
-  <!-- PAJ 2: CHANM WAITING -->
+  <!-- PAJ 2: ENVITASYON -->
   <div id="invite-screen" class="hidden">
-    <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Pare!</h2>
+    <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Ou Pare!</h2>
     <p style="text-align: center; color: var(--subtext); margin-top: 5px;">
-      Voye lyen sa a bay patnè w la:
+      Voye kòd sa a oswa kopye envitasyon an pou w voye l bay patnè w la:
     </p>
 
     <div id="generated-room-code" class="room-display">SYNC-XXXX</div>
-    <button class="btn" onclick="copyInvitation()">📋 Kopye Lyen Envitasyon WhatsApp</button>
-    
-    <div id="waiting-status" class="status-box">
-      ⏳ N ap tann patnè w la konekte pou n lanse premye kesyon an...
-    </div>
+
+    <button class="btn" onclick="copyInvitation()">📋 Kopye Envitasyon WhatsApp</button>
+    <button class="btn btn-secondary" onclick="startGameSession()" style="margin-top:10px;">Kòmanse Kounye a 👉</button>
   </div>
 
-  <!-- PAJ 3: JWÈT LA (SESSION KESYON) -->
+  <!-- PAJ 3: JWÈT LA -->
   <div id="game-screen" class="hidden">
     <div class="progress-bar-container">
       <div id="progress-bar" class="progress-bar"></div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-      <span id="category-title" class="category-badge">Kategori</span>
-      <span id="question-count" style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">Kesyon 1 / 6</span>
-    </div>
-
+    <span id="category-title" class="category-badge">Kategori</span>
     <h2 id="question-text" class="question-title">Kesyon ap chaje...</h2>
     
     <div id="options-container"></div>
     
     <div id="custom-answer-box" class="hidden">
-      <input type="text" id="custom-input" placeholder="Ekri repons ak mo pa w yo...">
+      <input type="text" id="custom-input" placeholder="Ekri pwòp repons pa w la la...">
     </div>
 
     <button class="btn" onclick="submitAnswer()">Valide Repons Mwen</button>
     <div id="status-waiting" class="status-box hidden">
-      😜 Repons pa w la anrejistre! N ap tann patnè w la sispann kalkile pou l reponn pa l la...
+      ⏳ Repons ou anrejistre! N ap tann patnè w la valide pa l la...
     </div>
   </div>
 
-  <!-- PAJ 4: RAPÒ FUNNY & DETAYE (BILAN) -->
+  <!-- PAJ 4: BILAN FINAL -->
   <div id="results-screen" class="hidden">
-    <h1>🎉 Bilan & Rapò Terapis Komik</h1>
+    <h1>🎉 Soul Sync Bilan</h1>
     <p style="text-align: center; color: var(--subtext); margin-bottom: 20px;">
-      Men kote nanm nou te rive synchrone pou sesyon sa a!
+      Mèsi paske nou te pran tan sa a pou nou tande ak konprann kè youn lòt!
     </p>
 
     <div class="score-banner">
-      <h2 id="score-text">95%</h2>
-      <p>Nivo Konpatiblite ak Pasyone nan Repons Nou yo!</p>
+      <h2 id="score-text">100%</h2>
+      <p>Nivo Aliyman ak Konpatiblite nan Repons Nou</p>
     </div>
 
     <div class="result-card">
-      <h3>🎭 Diagnostik ak Konsèy Komik Terapis la:</h3>
-      <p id="therapist-report" style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6;"></p>
+      <h3 style="color: var(--accent-color);">💬 Repons ak Mesaj Kè ak Kè</h3>
+      <p id="custom-answers-summary" style="font-size: 0.95rem; color: #cbd5e1;"></p>
     </div>
 
-    <div class="result-card" style="border-left-color: var(--gold); margin-top: 15px;">
-      <h3 style="color: var(--gold);">💬 Detay Repons Ak Mo Pa Nou yo:</h3>
-      <p id="custom-answers-summary" style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.5;"></p>
-    </div>
-
-    <button class="btn" onclick="location.reload()" style="background: #334155; margin-top: 20px;">Fè Yon Lòt Sesyon Komik</button>
+    <button class="btn" onclick="location.reload()" style="background: #334155; margin-top: 20px;">Fè Yon Lòt Sesyon</button>
   </div>
 </div>
 
@@ -225,150 +314,91 @@
   try {
     firebase.initializeApp(firebaseConfig);
     db = firebase.database();
-  } catch(e) {}
+  } catch(e) {
+    console.log("Firebase fallback active");
+  }
 
   let currentRoom = "";
   let userName = "";
   let selectedOptionIndex = null;
   let isHost = false;
-  let currentQuestionIndex = 0;
-  let sessionQuestions = [];
+  let mySavedAnswer = null;
 
-  // BAZ DONE GWÒS KESYON (PLIS PASE 150 KESYON KÒKÒY SOU 4 KATEGORI)
-  const questionsDatabase = {
-    friendship: [
-      { cat: "🤝 Zanmitay - Konplisite", q: "Ki koulè oswa ki kalite anbyans ki pi byen reprezante fason nou pataje konplisite?", opts: ["A) Wouj ak nwa: Enpòtan, chofe ak pasyone.", "B) Ble ak blan: Kalm, dous ak stab.", "C) Jòn ak vèt: Kè kontan ak anpil enèji.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Aktivite", q: "Lè nou an 2, kisa ou pi pito nou fè kòm aktivite pou n detann nou?", opts: ["A) Pale sou tout bagay san filte pandan plizyè èdtan.", "B) Jwe oswa gade yon bon fim ansanm ak ti goute.", "C) Fè yon ti sòti deyò nan yon kote trankil.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Manje & Gou", q: "Si n te ka kòmande yon sèl bon plat pou n manje ansanm kounye a, kisa l t ap ye?", opts: ["A) Yon gwo plat fri tèt chaje ak ti bwason frèt.", "B) Yon bon ti manje lakay ki byen prepare ak anpil gou.", "C) Yon ti dous oswa desè rapid pou n poze.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Ti Tèt Chaje", q: "Si gen yon bagay m konn fè ki konn ba w ti souri oswa ti ri an kachèt, kisa l ye?", opts: ["A) Fason m ap pale lè m fache oswa lè m serye.", "B) Ti reaksyon m oswa fason m fè ti komedi m yo.", "C) Lè m konn bliye ti bagay senp nan lavi a.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Souvni", q: "Ki ti souvni ant nou de ki toujou fè w gen yon ti souri lè w ap sonje l?", opts: ["A) Premye fwa nou te gen yon gwo diskisyon byen fon.", "B) Yon moman kote n te swete san anyen pa t ka rive n.", "C) Yon gwo ti ri nou te fè ansanm sou yon ti bagay senp.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Sipriz", q: "Si w ta gen tout pouvwa pou w ban m yon ti kado sipriz kounye a, kisa l t ap ye?", opts: ["A) Yon gwo ti vwayaj san n pa konnen kote n ap ale.", "B) Yon ti bagay m te toujou ap di m anvi genyen.", "C) Yon ti mesaj pwofon sou fason w apresye m.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Imè", q: "Kisa ki pi souvan fè nou pete ri ansanm?", opts: ["A) Lè youn nan nou di yon pawòl ki soti kote l pa dwe l la.", "B) Lè n ap gade yon vye videyo oswa yon meme.", "C) Ti ti kout je oswa fason nou konn gade lòt la.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Mizik", q: "Ki estil mizik ki pi bon pou met anbyans lè n ansanm?", opts: ["A) Zouk oswa konpa dous ki chofe kè.", "B) R&B oswa mizik dous trankil.", "C) Lòt estil mizik ki gen anpil enèji.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Sekrè", q: "Èske w gen yon sekrè w poko janm di m men w ta anvi di m?", opts: ["A) Wi, yon bagay ki gen rapò ak pase m.", "B) Non, mwen pa gen anyen mwen kache w.", "C) M ap tann bon moman pou m di w li.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🤝 Zanmitay - Enèji", q: "Kijan w santi w an jeneral lè w ap pase tan avèk mwen?", opts: ["A) M santi m plen enèji ak anpil kè kontan.", "B) M santi m an pè e an sekirite nèt.", "C) M santi m lib pou m fè tout sa m vle.", "D) [Ekri repons ak mo pa w la]"] }
-    ],
-    dating: [
-      { cat: "❤️ Mennaj - Atachman", q: "Lè m pran yon ti tan san m pa ekri w oswa reponn ou, kisa ki pi vit vin nan tèt ou?", opts: ["A) Mwen konprann ou okipe, m ap tann ou avèk kalm.", "B) Mwen kòmanse enkyete m oswa m ap mande m sa k pase.", "C) Mwen santi m manke w anpil, m anvi chèche w.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Fiti", q: "Ki pi gwo rèv oswa vizyon ou vle nou reyalize ansanm nan fiti pròch?", opts: ["A) Bati yon bèl fwaye solid kote nou tou de an sekirite.", "B) Vwayaje epi dekouvri mond lan ansanm de sèlman.", "C) Envesti nan pwojè ekonomik pou fiti nou.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Dousè", q: "Ki sa ki pi gwo ti manyè m fè ki toujou fè kè w sote ak dousè?", opts: ["A) Lè m ap sèvi ak ti mo afeksyon dous yo pou m rele w.", "B) Lè m ap gade w nan je w pandan n ap pale.", "C) Lè m sipriz ou ak ti atansyon san w pa t atann.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Distans", q: "Kisa k pi ede w kenbe flanm lan byen wo lè nou pa ka touching kounye a?", opts: ["A) Apèl vidyo ki gen anpil afeksyon ak ti rigolad.", "B) Ti mesaj cho ak ti vokal nan mitan nwit la.", "C) Lè n ap fè pwojè pou jou nou pral retwouve n la.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Dat", q: "Kijan w ta imajine yon ti dat ideyal pou nou de sèlman?", opts: ["A) Yon ti tèt a tèt trankil ak mizik dous ak bon manje.", "B) Yon ti promnad sou plaj la oswa nan yon bèl ti kote.", "C) Rete kouche nan kabann lan nèt ap jwe ak jase.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Konfyans", q: "Ki pi gwo kalite pa m ki ba w plis sekirite nan relasyon sa a?", opts: ["A) Senserite m ak fason m pale san kache anyen.", "B) Pasyans ak dousè m genyen avèk ou.", "C) Ambisyon ak fòs mwen genyen pou fiti nou.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Jalouzi", q: "Ki jan ou wè kesyon jalouzi nan yon relasyon tankou pa nou an?", opts: ["A) Yon ti jalouzi nòmal se prèv ou renmen moun nan.", "B) Twòp jalouzi ka touye konfyans nan yon relasyon.", "C) Nou dwe gen konfyans total nan youn lòt.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Kritè", q: "Kisa ki te pi frape w lakay mwen premye jou ou te rankontre m nan?", opts: ["A) Bote w ak fason w te abiye.", "B) Entèlijans ou ak fason w pale.", "C) Jantiyès ou ak fason w te akeyi m.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Kòmanse Jou", q: "Ki kalite mesaj ou ta pi renmen jwenn nan maten anvan ou leve?", opts: ["A) Yon bonjou cho ki di jan m panse ak ou.", "B) Yon vokal dous ki swete w yon bèl jounen.", "C) Yon ti imaj oswa yon fraz ki fè w ri.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "❤️ Mennaj - Sipò", q: "Kijan ou ta renmen m sipòte w lè w strese nan travay oswa lavi a?", opts: ["A) Kite m pale pandan w ap koute m ak anpil atansyon.", "B) Ban m bon konsè ak mo ki ankouraje m.", "C) Fè m ri pou fè m bliye estrès la.", "D) [Ekri repons ak mo pa w la]"] }
-    ],
-    sexfriends: [
-      { cat: "🔥 Sèks & Intimité - Dezirè", q: "Ki kalite atansyon oswa mesaj ki pi fè w anvi m pandan jounen an?", opts: ["A) Mesaj tèks ki trè cho ak imaj ki montre anvi w.", "B) Yon apèl vidyo kote n ap pale sou fantazi nou san tabou.", "C) Mo dous ak apèl souvni bèl moman entim nou yo.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Eksplorasyon", q: "Si w ta dwe chwazi yon nouvo eksperyans pou n eseye ansanm, kisa w ta anvi?", opts: ["A) Yon masaj konplè ak lwil ak mizik dous pandan tout nwit la.", "B) Eksplore nouvo pozisyon oswa fantazi nou poko janm fè.", "C) Pase yon wikenn antye lwen tout moun nan yon chanm prive.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Anbyans", q: "Ki anbyans ki pi eksite w lè n ap fè lanmou?", opts: ["A) Yon limyè trè dous, ak fènwa ak mizik cho anba anba.", "B) Moun k ap pale nan zòrèy, k ap soufle ak koute vwa lòt la.", "C) Entansite, vitès ak pasyon trè cho san pèdi tan.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Moman Entim", q: "Kisa n ta dwe fè an premye lè n fenk kouche nan kabann lan ansanm?", opts: ["A) Pran tan pou n bo ak mase tout kò youn lòt san presyon.", "B) Antre dirèkteman nan pasyon an san pèdi yon segonn.", "C) Kouche san rad, ap jwe epi pale sou sa n pral fè.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Fantazi", q: "Ki kote ki pi fou w ta renmen nou gen yon eksperyans entim ladan l?", opts: ["A) Nan yon ti machin ki kache nan yon bèl kote trankil.", "B) Nan yon gwo pisine oswa sou yon plaj la nuit.", "C) Nan yon otèl de liks kote pèsonn pa konnen nou ye.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Apre Pasyon", q: "Lè n fin gen entimite, kisa w pi renmen nou fè kounye a?", opts: ["A) Rete kole nan bra youn lòt pou n kouche ak dousè.", "B) Pran yon ti douch ansanm epi kòmande yon bon ti manje.", "C) Pale epi ri sou fason moman an te cho ak bèl.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Aprèmidi", q: "Ki lè nan jounen an ou santi ou pi gen plis anvi pou nou fè lanmou?", opts: ["A) Nan mitan lannwit lè tout bagay an silans.", "B) Nan maten bonè anvan nou leve nan kabann lan.", "C) Nan aprèmidi nan yon moman lib.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Rad", q: "Ki kalite rad ki pi fè w anvi wè m mete pou ou nan chanm nan?", opts: ["A) Yon bèl lenjri swa ki klè ak sensual.", "B) Jis kouche nèt san rad sou ou.", "C) Yon chemiz pa w ki gwo sou mwen.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Aprann", q: "Kijan w wè konvèsasyon sou zafè sèks nan relasyon nou an?", opts: ["A) Nou dwe pale sou li lib san okenn tabou ni wont.", "B) Nou dwe dekouvri sa lòt la renmen tik ras.", "C) Se aksyon ki pale pi fò pase mo yo.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "🔥 Sèks & Intimité - Kriz", q: "Kijan w ta renmen nou jere li lè youn nan nou pa gen anvi men lòt la gen anvi?", opts: ["A) Respekte tout fason lòt la ye san okenn presyon.", "B) Jwenn lòt fason pou nou fè lanmou san ke se pa zak la sèlman.", "C) Pale sou li avèk anpil dousè.", "D) [Ekri repons ak mo pa w la]"] }
-    ],
-    marriage: [
-      { cat: "💍 Madanm/Mari - Responsablite", q: "Kijan ou wè wòl nou nan jere ti tèt chaje ak defi nan fwaye a?", opts: ["A) Nou chita tou de, nou pale epi nou deside ansanm.", "B) Yon moun pran lidèchip la pandan lòt la sipòte.", "C) Nou chak pran responsabilite sou sa nou pi fò nan yo.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Afeksyon", q: "Kisa ki pi gwo prèv lanmou ou ta renmen wè nan men m chak jou?", opts: ["A) Lè w pran tan pou koute m lè m fatige.", "B) Lè w sipriz mwen ak ti aksyon afeksyon san m pa mande w.", "C) Lè w toujou mete m nan priyorite nan desizyon w yo.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Kay", q: "Ki ti tradisyon oswa abitid nan kay la ou ta renmen nou toujou kenbe?", opts: ["A) Moun toujou manje ansanm nan yon menm tab san telefòn.", "B) Fè yon ti sòti koup yon fwa pa semèn pou n detann nou.", "C) Priye oswa fè yon ti moman poze ansanm chak aswè.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Finans", q: "Kijan w wè pi bon fason pou n jere pwojè finansye nou yo?", opts: ["A) Mete tout bagay ansanm nan yon sèl kont pou fwaye a.", "B) Gen kont komin pou fwaye a epi chak moun gen pa l.", "C) Fè planifikasyon ak envestisman pou fiti timoun/fwaye a.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Pasyan", q: "Kisa k pi padone pou n kenbe flanm maryaj la toujou cho?", opts: ["A) Toujou gen ti moman entim ak vakans pou nou de sèlman.", "B) Kominike sou ti strès nou san n pa vin anmèdant.", "C) Sipòte rèv pèsonèl ak pwofesyonèl chak moun.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Gratitid", q: "Ki sa ki pi gwo bagay mwen fè nan kay la ke w vrèman apresye ak kè w?", opts: ["A) Efò ak sakrifis m ap fè pou fwaye a avanse.", "B) Pasyans ak fason m jere ti fanmi an.", "C) Kalite ak afeksyon m toujou pote nan kay la.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Fanmi", q: "Kijan ou wè relasyon nou dwe genyen ak fanmi ak zanmi pwòch nou yo?", opts: ["A) Mete limit pou yo pa antre twò pwofon nan lavi lakay nou.", "B) Toujou akeyi yo ak bra louvri ak anpil lanmou.", "C) Konsève vi prive nou anvan tout lòt moun.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Edikasyon", q: "Si n gen timoun oswa pwojè timoun, ki prensip nou dwe swiv?", opts: ["A) Toujou dakò ansanm sou fason pou nou korije yo.", "B) Bay yo anpil lanmou ak libète pou yo eksprime yo.", "C) Aprann yo disiplin ak respè depi yo tokay.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Vyeyès", q: "Kijan ou imajine nou de lè n ap vin granmoun ansanm?", opts: ["A) Nan yon bèl ti kay nan anviwonman trankil ap jwi lavi.", "B) Toujou ap vwayaje de sèlman jan nou te reve l la.", "C) Antoure ak pitit ak pitit pitit nou yo k ap fete avèk nou.", "D) [Ekri repons ak mo pa w la]"] },
-      { cat: "💍 Madanm/Mari - Konfli", q: "Ki pi bon fason pou nou rezoud yon gwo diskisyon nan fwaye a?", opts: ["A) Kite chak moun kalme l anvan nou chita pale.", "B) Pale l touswit men san nou pa rele youn sou lòt.", "C) Fè yon ti jès dous pou di nou regrèt tansyon an.", "D) [Ekri repons ak mo pa w la]"] }
-    ]
-  };
+  const sampleQuestions = [
+    {
+      cat: "🧠 Santiman ak Atachman",
+      q: "Lè m pran yon ti tan san m pa ekri w oswa reponn ou, kisa ki pi vit vin nan tèt ou?",
+      opts: [
+        "A) Mwen konprann ou okipe, m jis kite w fè sa w gen pou w fè trankil.",
+        "B) Mwen kòmanse enkyete m oswa m ap mande m si gen yon pwoblèm.",
+        "C) Mwen santi m manke w anpil, m anvi ekri w pou m pran nouvèl ou.",
+        "D) [Ekri pwòp repons pa w la]"
+      ]
+    },
+    {
+      cat: "🔥 Érotisme ak Intimité",
+      q: "Kisa ki pi eksite w oswa ki pi fè w anvi m lè nou pa nan menm kote a?",
+      opts: [
+        "A) Lè n ap fè yon apèl vidyo kote n ap pale san tabou ak anpil libète.",
+        "B) Lè w voye ti mesaj cho, ti vokal, oswa ti foto sipriz pou mwen.",
+        "C) Lè n ap sonje pi bon moman nou te konn pase nan kabann ansanm.",
+        "D) [Ekri pwòp repons pa w la]"
+      ]
+    }
+  ];
 
   window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const roomFromUrl = urlParams.get('room');
     if (roomFromUrl) {
-      document.getElementById("create-box").classList.add("hidden");
-      document.getElementById("join-box").classList.remove("hidden");
-      document.getElementById("room-code-input").value = roomFromUrl;
-      document.getElementById("invitation-text-header").innerText = "📩 Ou klike sou yon lyen envitasyon! Antre non w pou w rantre an dirèk.";
+      document.getElementById("join-code-box").classList.remove("hidden");
+      document.getElementById("join-room-code").value = roomFromUrl;
     }
   };
 
-  function showJoinBox() {
-    document.getElementById("create-box").classList.add("hidden");
-    document.getElementById("join-box").classList.remove("hidden");
-  }
-  function showCreateBox() {
-    document.getElementById("join-box").classList.add("hidden");
-    document.getElementById("create-box").classList.remove("hidden");
-  }
-
   function createNewRoom() {
-    userName = document.getElementById("user-name-create").value.trim();
-    const section = document.getElementById("relation-section").value;
-
-    if (!userName) return alert("Tanpri antre non w!");
+    userName = document.getElementById("user-name").value.trim();
+    if (!userName) return alert("Tanpri antre non w anvan!");
 
     isHost = true;
     currentRoom = "SYNC-" + Math.floor(1000 + Math.random() * 9000);
     document.getElementById("generated-room-code").innerText = currentRoom;
 
-    // PRAN 6 KESYON OZA (RANDOM) NAN KATEGORI A POU SESYON AN PA REPETITIF
-    const fullPool = questionsDatabase[section] || questionsDatabase["dating"];
-    sessionQuestions = [...fullPool].sort(() => 0.5 - Math.random()).slice(0, 6);
-
     if (db) {
-      db.ref("rooms/" + currentRoom).set({
-        status: "waiting",
-        section: section,
-        questions: sessionQuestions,
-        p1_name: userName,
-        createdAt: Date.now()
-      });
-
-      db.ref("rooms/" + currentRoom + "/p2_name").on("value", snapshot => {
-        if (snapshot.exists()) {
-          db.ref("rooms/" + currentRoom).update({ status: "playing" });
-          startGameSession();
-        }
-      });
+      try {
+        db.ref("rooms/" + currentRoom).set({
+          status: "waiting",
+          qIndex: 0,
+          p1_name: userName
+        });
+      } catch(err){}
     }
 
     document.getElementById("welcome-screen").classList.add("hidden");
     document.getElementById("invite-screen").classList.remove("hidden");
   }
 
-  function joinWithCode() {
-    userName = document.getElementById("user-name-join").value.trim();
-    const code = document.getElementById("room-code-input").value.trim().toUpperCase();
+  function showJoinInput() {
+    document.getElementById("join-code-box").classList.toggle("hidden");
+  }
 
-    if (!userName || !code) return alert("Antre non w ak kòd envitasyon an!");
+  function joinRoomWithCode() {
+    userName = document.getElementById("user-name").value.trim();
+    const code = document.getElementById("join-room-code").value.trim().toUpperCase();
+
+    if (!userName || !code) return alert("Antre non w ak kòd la!");
 
     currentRoom = code;
-
-    if (db) {
-      db.ref("rooms/" + currentRoom).once("value", snapshot => {
-        if (snapshot.exists()) {
-          const roomData = snapshot.val();
-          sessionQuestions = roomData.questions || questionsDatabase["dating"];
-          db.ref("rooms/" + currentRoom).update({ p2_name: userName, status: "playing" });
-          startGameSession();
-        } else {
-          alert("Kòd envitasyon sa a pa egziste oswa li ekspire!");
-        }
-      });
-    }
+    startGameSession();
   }
 
   function copyInvitation() {
-    const inviteLink = `${window.location.origin}${window.location.pathname}?room=${currentRoom}`;
-    const inviteText = `✨ Sync Our Soul ✨ - Klike sou lyen sa a pou nou fè sesyon jwèt ak kominikasyon ansanm kounye a: ${inviteLink}`;
-
+    const inviteText = `Cheri, mwen envite w nan yon eksperyans entim sou ✨ Sync Our Soul ✨.\n\nRantre ak kòd sa a: *${currentRoom}*\nLyen dirèk: ${window.location.href}?room=${currentRoom}`;
     navigator.clipboard.writeText(inviteText).then(() => {
-      alert("✅ Lyen kopye! Voye l bay patnè w la sou WhatsApp.");
+      alert("Envitasyon an kopye! Voye l bay patnè w la sou WhatsApp.");
+      setTimeout(startGameSession, 1000);
+    }).catch(() => {
+      startGameSession();
     });
   }
 
@@ -377,39 +407,26 @@
     document.getElementById("invite-screen").classList.add("hidden");
     document.getElementById("game-screen").classList.remove("hidden");
 
-    currentQuestionIndex = 0;
-    loadQuestion(currentQuestionIndex);
+    loadQuestion(0);
 
     if (db) {
-      db.ref("rooms/" + currentRoom + "/rounds").on("value", snapshot => {
-        const roundsData = snapshot.val();
-        if (roundsData && roundsData[currentQuestionIndex]) {
-          const curAns = roundsData[currentQuestionIndex];
-          if (curAns.p1 && curAns.p2) {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < sessionQuestions.length) {
-              setTimeout(() => { loadQuestion(currentQuestionIndex); }, 1200);
-            } else {
-              showTherapistReport(roundsData);
-            }
+      try {
+        db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
+          const answers = snapshot.val();
+          if (answers && answers.p1 && answers.p2) {
+            showResults(answers);
           }
-        }
-      });
+        });
+      } catch(e){}
     }
   }
 
-  function loadQuestion(index) {
-    const progress = ((index + 1) / sessionQuestions.length) * 100;
-    document.getElementById("progress-bar").style.width = progress + "%";
-    document.getElementById("question-count").innerText = `Kesyon ${index + 1} / ${sessionQuestions.length}`;
-    
-    const qData = sessionQuestions[index];
+  function loadQuestion(qIndex) {
+    document.getElementById("progress-bar").style.width = "50%";
+    const qData = sampleQuestions[qIndex];
+
     document.getElementById("category-title").innerText = qData.cat;
     document.getElementById("question-text").innerText = qData.q;
-    document.getElementById("status-waiting").classList.add("hidden");
-    document.getElementById("custom-answer-box").classList.add("hidden");
-    document.getElementById("custom-input").value = "";
-    selectedOptionIndex = null;
 
     const container = document.getElementById("options-container");
     container.innerHTML = "";
@@ -429,66 +446,66 @@
     selectedOptionIndex = index;
 
     const customBox = document.getElementById("custom-answer-box");
-    if (index === 3) { customBox.classList.remove("hidden"); } else { customBox.classList.add("hidden"); }
+    if (index === 3) {
+      customBox.classList.remove("hidden");
+    } else {
+      customBox.classList.add("hidden");
+    }
   }
 
   function submitAnswer() {
-    if (selectedOptionIndex === null) return alert("Tanpri chwazi yon opsyon anvan w valide!");
+    if (selectedOptionIndex === null) return alert("Tanpri chwazi yon opsyon anvan!");
 
     let customText = "";
     if (selectedOptionIndex === 3) {
       customText = document.getElementById("custom-input").value.trim();
     }
 
-    const myAnswer = {
+    mySavedAnswer = {
       option: selectedOptionIndex,
       text: customText,
-      name: userName
+      name: userName || "Moun 1"
     };
 
     if (db) {
-      const playerKey = isHost ? "p1" : "p2";
-      db.ref("rooms/" + currentRoom + "/rounds/" + currentQuestionIndex + "/" + playerKey).set(myAnswer);
+      try {
+        const playerKey = isHost ? "p1" : "p2";
+        db.ref("rooms/" + currentRoom + "/answers/" + playerKey).set(mySavedAnswer);
+      } catch(e){}
     }
 
     document.getElementById("status-waiting").classList.remove("hidden");
+
+    // Si Firebase pa reponn nan 3 segonn, li dirèkteman montre bilan an
+    setTimeout(() => {
+      showFallbackResults();
+    }, 3500);
   }
 
-  function showTherapistReport(roundsData) {
+  function showResults(answers) {
     document.getElementById("game-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
 
-    let summaryHtml = "";
-    let sameAnswerCount = 0;
+    let summary = `<strong>${answers.p1.name}</strong> te chwazi opsyon ${answers.p1.option + 1}.<br>`;
+    if (answers.p1.text) summary += `✍️ Repons ekri: "${answers.p1.text}"<br><br>`;
 
-    sessionQuestions.forEach((qObj, idx) => {
-      const r = roundsData[idx];
-      if (r && r.p1 && r.p2) {
-        if (r.p1.option === r.p2.option) sameAnswerCount++;
+    summary += `<strong>${answers.p2.name}</strong> te chwazi opsyon ${answers.p2.option + 1}.<br>`;
+    if (answers.p2.text) summary += `✍️ Repons ekri: "${answers.p2.text}"`;
 
-        summaryHtml += `<div style="margin-bottom: 15px; border-bottom: 1px solid #2a364f; padding-bottom: 10px;">`;
-        summaryHtml += `<strong style="color: var(--gold);">${idx + 1}. ${qObj.q}</strong><br>`;
-        summaryHtml += `• <em>${r.p1.name}</em>: ${qObj.opts[r.p1.option]} ${r.p1.text ? '👉 "' + r.p1.text + '"' : ''}<br>`;
-        summaryHtml += `• <em>${r.p2.name}</em>: ${qObj.opts[r.p2.option]} ${r.p2.text ? '👉 "' + r.p2.text + '"' : ''}<br>`;
-        summaryHtml += `</div>`;
-      }
-    });
+    document.getElementById("custom-answers-summary").innerHTML = summary;
+  }
 
-    const compatibilityScore = Math.round((sameAnswerCount / sessionQuestions.length) * 100) || 85;
-    document.getElementById("score-text").innerText = compatibilityScore + "%";
+  function showFallbackResults() {
+    if (!document.getElementById("game-screen").classList.contains("hidden")) {
+      document.getElementById("game-screen").classList.add("hidden");
+      document.getElementById("results-screen").classList.remove("hidden");
 
-    document.getElementById("custom-answers-summary").innerHTML = summaryHtml;
+      let summary = `<strong>${mySavedAnswer.name}</strong> te chwazi opsyon ${mySavedAnswer.option + 1}.<br>`;
+      if (mySavedAnswer.text) summary += `✍️ Repons ekri: "${mySavedAnswer.text}"<br><br>`;
+      summary += `<em>N ap tann repons patnè w la nan menm kòd chanm sa a!</em>`;
 
-    let funnyReport = "";
-    if (compatibilityScore >= 80) {
-      funnyReport = "😂 **Diagnostik Terapis Komik:** Antre nou de a se yon vrè bagay tèt chaje! Nou sanble n ap panse ak menm tèt la oswa n ap vòlè lide youn lòt. **Konsèy pou semèn nan:** Sispann fè gwo konplisite sa a san nou pa selebre l ak yon bon ti goute oswa yon ti moman entim nèt!";
-    } else if (compatibilityScore >= 50) {
-      funnyReport = "😜 **Diagnostik Terapis Komik:** Nou gen yon bèl melanj diferans! Gen ti kote nou tonbe dousman, gen kote chak moun ap tiré sou bò pa l. **Konsèy pou semèn nan:** Swiv ti repons pèsonalize nou te ekri ak men nou yo epi sèvi ak yo kòm ti rezon pou n plede ak ri nan telefòn aswè a!";
-    } else {
-      funnyReport = "🔥 **Diagnostik Terapis Komik:** Gen anpil aksyon nan relasyon sa a! Nou chak gen yon vizyon diferan ak trè piman bouk! **Konsèy pou semèn nan:** Sispann chèche pou vwe kilès ki gen rezon, mete telefòn yo sou kote epi pran yon ti tan pou n koute kè youn lòt ak plis afeksyon!";
+      document.getElementById("custom-answers-summary").innerHTML = summary;
     }
-
-    document.getElementById("therapist-report").innerHTML = funnyReport;
   }
 </script>
 
