@@ -81,4 +81,113 @@ const localQuestions = [
   { cat:"💖 Langaj Lanmou", q:"Kijan ou santi w pi renmen?", opts:["Mo dous","Kado ak atansyon","Tan kalite san telefòn","Ekri pa m"] },
   { cat:"🔥 Dezir Kache", q:"Yon bagay ou ta renmen eseye avè m?", opts:["Jwèt wòl / fantasme","Yon kote diferan","Pale pi sal pandan entimite","Ekri pa m"] },
   { cat:"🏠 Fiti", q:"Kote ou wè nou nan 2 an?", opts:["Abite ansanm / marye","Bati biznis ansanm","Vwayaje mond lan","Ekri pa m"] },
-  { cat:"😡 Limit", q:"Kisa ki ka fè w fache nèt?", opts:["Manti","Mank respè dev
+  { cat:"😡 Limit", q:"Kisa ki ka fè w fache nèt?", opts:["Manti","Mank respè devan moun","Mank atansyon","Ekri pa m"] },
+  { cat:"🌙 Entimite", q:"Ki moman ou te santi w pi konekte avè m?", opts:["Lè nou te kriye / ri ansanm","Apre lanmou nou pale","Lè ou te soutni m","Ekri pa m"] },
+  { cat:"✨ Sipriz", q:"Ki sipriz ki ta fè kè w bat pi fò?", opts:["Yon vwayaj","Yon lèt lanmou","Yon nwit jis pou nou de","Ekri pa m"] },
+];
+
+// ========= 3. DATABASE - tout apèl Firebase yo =========
+const DB = {
+  createRoom: (code, name) => db.ref("rooms/"+code).set({status:"waiting", qIndex:0, p1_name:name}),
+  getQuestions: async () => {
+    try{ const s=await db.ref("questions").once("value"); if(s.exists()) return Object.values(s.val()); }catch(e){}
+    return localQuestions;
+  },
+  saveAnswer: (room, qi, pKey, data) => db.ref(`rooms/${room}/answers/q${qi}/${pKey}`).set(data),
+  listenQIndex: (room, cb) => db.ref("rooms/"+room+"/qIndex").on("value", s=>{ if(s.val()!==null) cb(s.val()); }),
+  listenAnswers: (room, cb) => db.ref("rooms/"+room+"/answers").on("value", s=> cb(s.val())),
+  setNext: (room, next) => db.ref("rooms/"+room+"/qIndex").set(next)
+};
+
+// ========= 4. APP - lojik la =========
+let currentRoom="", userName="", selectedOptionIndex=null, isHost=false, currentQIndex=0, allQuestions=[];
+
+document.getElementById("btn-create").onclick=createNewRoom;
+document.getElementById("btn-show-join").onclick=()=>document.getElementById("join-code-box").classList.toggle("hidden");
+document.getElementById("btn-join").onclick=joinRoomWithCode;
+document.getElementById("btn-copy").onclick=copyInvitation;
+document.getElementById("btn-start").onclick=startGameSession;
+document.getElementById("submitBtn").onclick=submitAnswer;
+
+function createNewRoom(){
+  userName=document.getElementById("user-name").value.trim();
+  if(!userName) return alert("Antre non w!");
+  isHost=true;
+  currentRoom="SYNC-"+Math.floor(1000+Math.random()*9000);
+  document.getElementById("generated-room-code").innerText=currentRoom;
+  document.getElementById("welcome-screen").classList.add("hidden");
+  document.getElementById("invite-screen").classList.remove("hidden");
+  DB.createRoom(currentRoom, userName);
+}
+function joinRoomWithCode(){
+  userName=document.getElementById("user-name").value.trim();
+  const code=document.getElementById("join-room-code").value.trim().toUpperCase();
+  if(!userName||!code) return alert("Antre non ak kòd!");
+  currentRoom=code; isHost=false; startGameSession();
+}
+function copyInvitation(){
+  const link=location.href.split('?')[0]+"?room="+currentRoom;
+  const txt=`Cheri, mwen envite w nan ✨ Sync Our Soul ✨\nKòd: *${currentRoom}*\nLyen: ${link}`;
+  navigator.clipboard.writeText(txt).then(()=>alert("Envitasyon kopye!"));
+}
+async function startGameSession(){
+  allQuestions=await DB.getQuestions();
+  document.getElementById("welcome-screen").classList.add("hidden");
+  document.getElementById("invite-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
+  DB.listenQIndex(currentRoom, idx=>{ currentQIndex=idx; loadQuestion(idx); });
+  DB.listenAnswers(currentRoom, all=>{
+    if(!all) return;
+    const cur=all["q"+currentQIndex];
+    if(cur && cur.p1 && cur.p2){
+      const next=currentQIndex+1;
+      if(next<allQuestions.length){ if(isHost) DB.setNext(currentRoom,next); }
+      else{ showFinalResults(all); }
+    }
+  });
+  loadQuestion(0);
+}
+function loadQuestion(idx){
+  const qData=allQuestions[idx];
+  document.getElementById("progress-bar").style.width=((idx+1)/allQuestions.length*100)+"%";
+  document.getElementById("category-title").innerText=`${qData.cat} (${idx+1}/${allQuestions.length})`;
+  document.getElementById("question-text").innerText=qData.q;
+  const cont=document.getElementById("options-container"); cont.innerHTML="";
+  selectedOptionIndex=null;
+  document.getElementById("custom-answer-box").classList.add("hidden");
+  document.getElementById("status-waiting").classList.add("hidden");
+  document.getElementById("submitBtn").disabled=false;
+  document.getElementById("custom-input").value="";
+  qData.opts.forEach((opt,i)=>{
+    const b=document.createElement("button"); b.className="option-btn"; b.innerText=opt;
+    b.onclick=()=>{ document.querySelectorAll(".option-btn").forEach(x=>x.classList.remove("selected")); b.classList.add("selected"); selectedOptionIndex=i; if(i===3) document.getElementById("custom-answer-box").classList.remove("hidden"); else document.getElementById("custom-answer-box").classList.add("hidden"); };
+    cont.appendChild(b);
+  });
+}
+function submitAnswer(){
+  if(selectedOptionIndex===null) return alert("Chwazi yon opsyon!");
+  const custom=document.getElementById("custom-input").value.trim();
+  const pKey=isHost?"p1":"p2";
+  DB.saveAnswer(currentRoom, currentQIndex, pKey, {option:selectedOptionIndex, text:selectedOptionIndex===3?custom:"", name:userName, time:Date.now()});
+  document.getElementById("status-waiting").classList.remove("hidden");
+  document.getElementById("submitBtn").disabled=true;
+}
+function showFinalResults(all){
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("results-screen").classList.remove("hidden");
+  let html="", same=0;
+  Object.keys(all).forEach(k=>{
+    const qa=all[k]; const qi=parseInt(k.replace("q","")); const q=allQuestions[qi];
+    if(qa.p1.option===qa.p2.option) same++;
+    html+=`<div class="result-card"><h3 style="color:var(--gold)">${q.cat} - ${q.q}</h3><p><strong>${qa.p1.name}:</strong> ${q.opts[qa.p1.option]} ${qa.p1.text?`→ "${qa.p1.text}"`:``}</p><p><strong>${qa.p2.name}:</strong> ${q.opts[qa.p2.option]} ${qa.p2.text?`→ "${qa.p2.text}"`:``}</p></div>`;
+  });
+  document.getElementById("score-text").innerText=Math.round((same/allQuestions.length)*100)+"%";
+  document.getElementById("final-summary").innerHTML=html;
+}
+window.onload=()=>{
+  const p=new URLSearchParams(location.search).get('room');
+  if(p){ document.getElementById("join-code-box").classList.remove("hidden"); document.getElementById("join-room-code").value=p; }
+};
+</script>
+</body>
+</html>
