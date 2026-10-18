@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Admin - Pouse Kesyon</title></head>
+<body style="font-family:sans-serif;padding:20px;background:#0b0f19;color:#fff">
+<h2>Admin - Pouse 100 Kesyon nan Firebase</h2>
+<p>Klike bouton an, li ap mete tout 100 kesyon yo nan <b>questions</b> otomatik</p>
+<button id="push" style="padding:15px 25px;background:#e11d48;color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:bold">POUSE 100 KESYON KOUNYA</button>
+<p id="status" style="margin-top:15px;color:#fbbf24"></p>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+const firebaseConfig={databaseURL:"https://syncoursoul-default-rtdb.firebaseio.com"};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+
+document.getElementById("push").onclick=()=>{
+  document.getElementById("status").innerText="Ap pouse... tann";
+  let questions={};
+  let cats=["Atachman","Dezir","Kominikasyon","Blesi","Langaj Lanmou","Solo","Fiti","Limit","Entimite","Estim Swa"];
+  let types=["couple","both","solo"];
+  let bases=["Le patne w pa reponn rapid kisa ou santi","Kisa ki kenbe flanm nan le nou lwen","Le nou gen kont kijan ou reyaji","Ki blesi ou pote depi timoun","Kijan ou santi w pi renmen","Kisa ki fe w pe le w poukont ou","Kisa ki fe w pe nan avni relasyon an","Ki limit ou pa janm negosye","Ki entimite ki manke w plis","Konbyen ou renmen tet ou sou dis"];
+  let optsA=["M konprann li okipe","M enkyete m pedi l","M fache li pa respekte m","Ekri pa m"];
+  let optsB=["Pawol cho","Foto vokal cho","Sonje moman entim nou","Ekri pa m"];
+  let optsC=["M femen ko m","M pale fo","M bezwen tan pou kalme","Ekri pa m"];
+  let optsD=["Abandon yo kite m","Reje yo pa vle m","Trayizon yo twonpe m","Ekri pa m"];
+  
+  for(let i=0;i<100;i++){
+    let cat=cats[i%10];
+    let typ=types[i%3];
+    let q=bases[i%10]+" kesyon "+(i+1);
+    let opts=i%4==0?optsA:i%4==1?optsB:i%4==2?optsC:optsD;
+    questions["q"+i]={cat:cat,type:typ,q:q,opts:opts};
+  }
+  
+  db.ref("questions").set(questions).then(()=>{
+    document.getElementById("status").innerText="FINI! 100 kesyon yo antre nan Firebase - kounya ale nan index.html ou a li ap mache";
+    document.getElementById("status").style.color="#22c55e";
+  }).catch(e=>{
+    document.getElementById("status").innerText="Ere: "+e.message;
+  });
+};
+</script>
+</body>
+</html>
