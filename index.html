@@ -67,9 +67,6 @@
       color: #cbd5e1;
     }
 
-    .benefits-list { margin: 15px 0; padding-left: 20px; }
-    .benefits-list li { margin-bottom: 8px; color: #e2e8f0; }
-
     label {
       display: block;
       font-size: 0.9rem;
@@ -222,7 +219,7 @@
 <body>
 
 <div class="container">
-  <!-- PAJ 1: AKÈY AK FÒM KREYE OSWA RANTRE -->
+  <!-- PAJ 1: AKÈY AK FÒM -->
   <div id="welcome-screen">
     <h1>✨ Sync Our Soul</h1>
     <p class="tagline">Espas Entim ak Kominikasyon pou Koup</p>
@@ -234,17 +231,29 @@
       </p>
     </div>
 
-    <!-- SI ITILIZATÈ A SÈVI AK YON LYEN ENVITASYON -->
+    <!-- SI LANKOU OUVRI AK YON LYEN ENVITASYON -->
     <div id="join-from-link-box" class="hidden">
-      <p style="text-align: center; color: var(--gold); font-weight: 600; margin-bottom: 10px;">
-        📩 Ou resevwa yon envitasyon nan men <span id="inviter-name-display">patnè w la</span>!
-      </p>
+      <div style="background: rgba(225, 29, 72, 0.15); padding: 15px; border-radius: 12px; border: 1px solid var(--accent-color); margin-bottom: 15px;">
+        <p style="text-align: center; color: var(--gold); font-weight: 600; font-size: 1.05rem;">
+          📩 Ou resevwa yon envitasyon nan men <span id="inviter-name-display" style="color: white; text-decoration: underline;">patnè w la</span>!
+        </p>
+      </div>
+
       <label for="user-name-invited">Non pa w / Siyen an:</label>
-      <input type="text" id="user-name-invited" placeholder="Antre non w pou w rantre">
+      <input type="text" id="user-name-invited" placeholder="Antre non w pou w ka jwenn patnè w la">
+
+      <label for="distance-range-invited">Ki kote nou chak abite an mwayèn?</label>
+      <select id="distance-range-invited">
+        <option value="same_house">🏠 N ap viv nan menm kay la</option>
+        <option value="near">🏙️ Menm vil / Ti distans (Mwens pase 8 km)</option>
+        <option value="medium">🚗 Zòn diferan (Eks: Ant 8 km ak 50 km)</option>
+        <option value="far">✈️ Relasyon a gwo distans (Plis pase 50 km / Lòt peyi)</option>
+      </select>
+
       <button class="btn btn-green" onclick="joinRoomFromLink()">Rantre nan Chanm lan</button>
     </div>
 
-    <!-- SI SE YON MOUN K AP KREYE CHANM LAN KÒMANSE -->
+    <!-- SI SE ITILIZATÈ A K AP KREYE CHANM MIAN -->
     <div id="create-box">
       <label for="user-name">Non pa w / Siyen an:</label>
       <input type="text" id="user-name" placeholder="Antre non w">
@@ -264,11 +273,11 @@
     </div>
   </div>
 
-  <!-- PAJ 2: ENVITASYON AK WAITING ROOM -->
+  <!-- PAJ 2: CHANM ATANN AK ENVITASYON -->
   <div id="invite-screen" class="hidden">
     <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Ou Pare!</h2>
     <p style="text-align: center; color: var(--subtext); margin-top: 5px;">
-      Voye envitasyon an bay <strong id="partner-name-display">patnè w la</strong>:
+      Voye envitasyon an bay <strong id="partner-name-display" style="color: var(--gold);">patnè w la</strong>:
     </p>
 
     <div id="generated-room-code" class="room-display">SYNC-XXXX</div>
@@ -330,7 +339,7 @@
   </div>
 </div>
 
-<!-- SDK Firebase -->
+<!-- SDK Firebase (Realtime Database Sync) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -411,7 +420,7 @@
         p2_target_name: partnerName
       });
 
-      // Koute si patnè a konekte pou montre Notifikasyon an
+      // Senkronizasyon an dirèk: Lè dezyèm moun nan rantre
       db.ref("rooms/" + currentRoom + "/p2_name").on("value", snapshot => {
         if (snapshot.exists()) {
           const joinedName = snapshot.val();
@@ -422,7 +431,7 @@
         }
       });
 
-      // Koute si moun nan klike sou "Lanse Jwèt la"
+      // Senkronizasyon an dirèk: Lè jwèt la lanse
       db.ref("rooms/" + currentRoom + "/status").on("value", snapshot => {
         if (snapshot.val() === "playing") {
           startGameSession();
@@ -436,7 +445,7 @@
 
   function joinRoomFromLink() {
     userName = document.getElementById("user-name-invited").value.trim();
-    if (!userName) return alert("Tanpri antre non w!");
+    if (!userName) return alert("Tanpri antre non w pou w ka rantre!");
 
     currentRoom = roomUrlData;
     if (db) {
@@ -444,6 +453,7 @@
         p2_name: userName
       });
 
+      // Koute tou lè premye moun nan peze "Lanse Jwèt la" pou tou de ekran yo chanje an menm tan
       db.ref("rooms/" + currentRoom + "/status").on("value", snapshot => {
         if (snapshot.val() === "playing") {
           startGameSession();
@@ -480,6 +490,7 @@
 
     loadQuestion(0);
 
+    // Koute lè tou de moun fin valide repons yo pou afiche Bilan an an menm tan
     if (db) {
       db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
         const answers = snapshot.val();
