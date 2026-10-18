@@ -14,7 +14,6 @@
       --subtext: #94a3b8;
       --border-color: #2a364f;
       --gold: #fbbf24;
-      --green: #10b981;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -67,6 +66,9 @@
       color: #cbd5e1;
     }
 
+    .benefits-list { margin: 15px 0; padding-left: 20px; }
+    .benefits-list li { margin-bottom: 8px; color: #e2e8f0; }
+
     label {
       display: block;
       font-size: 0.9rem;
@@ -106,8 +108,6 @@
     .btn:hover { background: var(--accent-hover); }
     .btn-secondary { background: #334155; }
     .btn-secondary:hover { background: #475569; }
-    .btn-green { background: var(--green); }
-    .btn-green:hover { background: #059669; }
 
     .progress-bar-container {
       width: 100%;
@@ -172,14 +172,6 @@
       border: 1px dashed var(--accent-color);
     }
 
-    .timer-box {
-      color: var(--gold);
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
-
     .room-display {
       background: #0b0f19;
       padding: 15px;
@@ -215,62 +207,56 @@
 <body>
 
 <div class="container">
-  <!-- PAJ 1: AKÈY AK ENTWODIKSYON -->
+  <!-- PAJ 1: AKÈY -->
   <div id="welcome-screen">
     <h1>✨ Sync Our Soul</h1>
     <p class="tagline">Espas Entim ak Kominikasyon pou Koup</p>
     
     <div class="intro-box">
-      <p><strong>Eksplikasyon ak Gid Jwèt la:</strong></p>
+      <p><strong>Yon voyaj nan fon kè relasyon nou:</strong></p>
       <p style="margin-top: 6px;">
-        <strong>Sync Our Soul</strong> se yon espas ki fèt pou ede w reponn kesyon pwofon sou relasyon w. Ou ka jenerè yon kòd pou w envite patnè w la, oswa konekte ak yon kòd envitasyon si li te voye youn pou ou deja.
+        <strong>Sync Our Soul</strong> se yon eksperyans ki baze sou terapi koup pou ede nou kase silans yo, re-enkande flanm pasyon an, epi pi byen konprann sa k nan fon nanm youn lòt.
       </p>
+      <ul class="benefits-list">
+        <li>✨ <strong>Kominikasyon Pwofon:</strong> Eksprese sa w santi san jijman.</li>
+        <li>🔥 <strong>Érotisme ak Intimité:</strong> Eksplore dezirè nou an libète.</li>
+        <li>🌱 <strong>Vizyon pou Fiti la:</strong> Bati pi bon konpatiblite.</li>
+      </ul>
     </div>
 
-    <!-- OPSYON A: RANTRE AK YON KÒD ENVITASYON (OSWA VYEN LYEN) -->
-    <div id="join-box" class="hidden">
-      <div style="background: rgba(225, 29, 72, 0.15); padding: 15px; border-radius: 12px; border: 1px solid var(--accent-color); margin-bottom: 15px;">
-        <p style="text-align: center; color: var(--gold); font-weight: 600;" id="invitation-text-header">
-          📩 Antre non w pou w rantre nan chanm vityèl la!
-        </p>
-      </div>
+    <label for="user-name">Non pa w / Siyen an:</label>
+    <input type="text" id="user-name" placeholder="Antre non w">
 
-      <label for="user-name-join">Non pa w / Siyen an:</label>
-      <input type="text" id="user-name-join" placeholder="Antre non w">
+    <label for="distance-range">Ki kote nou chak abite an mwayèn?</label>
+    <select id="distance-range">
+      <option value="same_house">🏠 N ap viv nan menm kay la</option>
+      <option value="near">🏙️ Menm vil / Ti distans (Mwens pase 8 km)</option>
+      <option value="medium">🚗 Zòn diferan (Eks: Ant 8 km ak 50 km)</option>
+      <option value="far">✈️ Relasyon a gwo distans (Plis pase 50 km / Lòt peyi)</option>
+    </select>
 
-      <label for="room-code-input">Kòd Envitasyon an:</label>
-      <input type="text" id="room-code-input" placeholder="Eks: SYNC-8492">
-
-      <button class="btn btn-green" onclick="joinWithCode()">Rantre nan Chanm lan</button>
-      <button class="btn btn-secondary" onclick="showCreateBox()" style="margin-top: 10px;">Oswa Kreye Yon Nouvo Chanm</button>
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+      <button class="btn" onclick="createNewRoom()">Lanse Yon Nouvo Chanm</button>
+      <button class="btn btn-secondary" onclick="showJoinInput()">Rantre ak yon Kòd</button>
     </div>
 
-    <!-- OPSYON B: KREYE YON NOUVO CHANM -->
-    <div id="create-box">
-      <label for="user-name-create">Non pa w / Siyen an:</label>
-      <input type="text" id="user-name-create" placeholder="Antre non w">
-
-      <button class="btn" onclick="createNewRoom()">Lanse Yon Envitasyon</button>
-      <button class="btn btn-secondary" onclick="showJoinBox()" style="margin-top: 10px;">Mwen gen yon kòd envitasyon deja</button>
+    <div id="join-code-box" class="hidden" style="margin-top: 15px;">
+      <input type="text" id="join-room-code" placeholder="Antre Kòd Envitasyon an (eg: SYNC-8492)">
+      <button class="btn" onclick="joinRoomWithCode()">Rantre nan Chanm lan</button>
     </div>
   </div>
 
-  <!-- PAJ 2: CHANM WAITING & TIMER ENVITASYON (1 MINIT) -->
+  <!-- PAJ 2: ENVITASYON -->
   <div id="invite-screen" class="hidden">
-    <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Pare!</h2>
+    <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Ou Pare!</h2>
     <p style="text-align: center; color: var(--subtext); margin-top: 5px;">
-      Kopye lyen sa a pou w voye l bay patnè w la:
+      Voye kòd sa a oswa kopye envitasyon an pou w voye l bay patnè w la:
     </p>
 
     <div id="generated-room-code" class="room-display">SYNC-XXXX</div>
 
-    <button id="copy-btn" class="btn" onclick="copyInvitation()">📋 Kopye Lyen Envitasyon an</button>
-    
-    <div id="timer-display" class="timer-box hidden">⏱️ Lyen an ap ekspire nan: <span id="time-left">60</span>s</div>
-
-    <div id="waiting-status" class="status-box">
-      ⏳ N ap tann patnè w la rantre nan chanm lan...
-    </div>
+    <button class="btn" onclick="copyInvitation()">📋 Kopye Envitasyon WhatsApp</button>
+    <button class="btn btn-secondary" onclick="startGameSession()" style="margin-top:10px;">Kòmanse Kounye a 👉</button>
   </div>
 
   <!-- PAJ 3: JWÈT LA -->
@@ -290,7 +276,7 @@
 
     <button class="btn" onclick="submitAnswer()">Valide Repons Mwen</button>
     <div id="status-waiting" class="status-box hidden">
-      ⏳ Repons ou anrejistre nan mèmwa tampon an! N ap tann patnè w la valide pa l la...
+      ⏳ Repons ou anrejistre! N ap tann patnè w la valide pa l la...
     </div>
   </div>
 
@@ -328,13 +314,15 @@
   try {
     firebase.initializeApp(firebaseConfig);
     db = firebase.database();
-  } catch(e) {}
+  } catch(e) {
+    console.log("Firebase fallback active");
+  }
 
   let currentRoom = "";
   let userName = "";
   let selectedOptionIndex = null;
   let isHost = false;
-  let timerInterval = null;
+  let mySavedAnswer = null;
 
   const sampleQuestions = [
     {
@@ -362,114 +350,59 @@
   window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const roomFromUrl = urlParams.get('room');
-
     if (roomFromUrl) {
-      document.getElementById("create-box").classList.add("hidden");
-      document.getElementById("join-box").classList.remove("hidden");
-      document.getElementById("room-code-input").value = roomFromUrl;
-      document.getElementById("invitation-text-header").innerText = "📩 Ou klike sou yon lyen envitasyon! Antre non w pou w antre an dirèk.";
+      document.getElementById("join-code-box").classList.remove("hidden");
+      document.getElementById("join-room-code").value = roomFromUrl;
     }
   };
 
-  function showJoinBox() {
-    document.getElementById("create-box").classList.add("hidden");
-    document.getElementById("join-box").classList.remove("hidden");
-  }
-
-  function showCreateBox() {
-    document.getElementById("join-box").classList.add("hidden");
-    document.getElementById("create-box").classList.remove("hidden");
-  }
-
   function createNewRoom() {
-    userName = document.getElementById("user-name-create").value.trim();
-    if (!userName) return alert("Tanpri antre non w pou w kreye envitasyon an!");
+    userName = document.getElementById("user-name").value.trim();
+    if (!userName) return alert("Tanpri antre non w anvan!");
 
     isHost = true;
     currentRoom = "SYNC-" + Math.floor(1000 + Math.random() * 9000);
     document.getElementById("generated-room-code").innerText = currentRoom;
 
     if (db) {
-      db.ref("rooms/" + currentRoom).set({
-        status: "waiting",
-        qIndex: 0,
-        p1_name: userName,
-        createdAt: Date.now()
-      });
-
-      // Koute lè dezyèm moun nan konekte pou tou de al nan jwèt la an menm tan
-      db.ref("rooms/" + currentRoom + "/p2_name").on("value", snapshot => {
-        if (snapshot.exists()) {
-          db.ref("rooms/" + currentRoom).update({ status: "playing" });
-          startGameSession();
-        }
-      });
+      try {
+        db.ref("rooms/" + currentRoom).set({
+          status: "waiting",
+          qIndex: 0,
+          p1_name: userName
+        });
+      } catch(err){}
     }
 
     document.getElementById("welcome-screen").classList.add("hidden");
     document.getElementById("invite-screen").classList.remove("hidden");
   }
 
-  function joinWithCode() {
-    userName = document.getElementById("user-name-join").value.trim();
-    const code = document.getElementById("room-code-input").value.trim().toUpperCase();
+  function showJoinInput() {
+    document.getElementById("join-code-box").classList.toggle("hidden");
+  }
 
-    if (!userName || !code) return alert("Antre non w ak kòd envitasyon an!");
+  function joinRoomWithCode() {
+    userName = document.getElementById("user-name").value.trim();
+    const code = document.getElementById("join-room-code").value.trim().toUpperCase();
+
+    if (!userName || !code) return alert("Antre non w ak kòd la!");
 
     currentRoom = code;
-
-    if (db) {
-      db.ref("rooms/" + currentRoom).once("value", snapshot => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          // Tcheke si kòd la gen mwens pase 1 minit oswa si chanm nan egziste
-          db.ref("rooms/" + currentRoom).update({
-            p2_name: userName,
-            status: "playing"
-          });
-          startGameSession();
-        } else {
-          alert("Kòd envitasyon sa a pa egziste oswa li ekspire. Mande patnè w la yon nouvo lyen!");
-        }
-      });
-    } else {
-      startGameSession();
-    }
+    startGameSession();
   }
 
   function copyInvitation() {
-    const inviteLink = `${window.location.origin}${window.location.pathname}?room=${currentRoom}`;
-    const inviteText = `Cheri, mwen envite w nan yon eksperyans entim sou ✨ Sync Our Soul ✨.\n\nKlike sou lyen sa a pou w rantre nan chanm vityèl la (Valide pou 1 minit): ${inviteLink}`;
-
+    const inviteText = `Cheri, mwen envite w nan yon eksperyans entim sou ✨ Sync Our Soul ✨.\n\nRantre ak kòd sa a: *${currentRoom}*\nLyen dirèk: ${window.location.href}?room=${currentRoom}`;
     navigator.clipboard.writeText(inviteText).then(() => {
-      alert("✅ Lyen jenere ak kopye! Voye l bay patnè w la sou WhatsApp touswit.");
-      start1MinTimer();
+      alert("Envitasyon an kopye! Voye l bay patnè w la sou WhatsApp.");
+      setTimeout(startGameSession, 1000);
     }).catch(() => {
-      alert("Lyen: " + inviteLink);
-      start1MinTimer();
+      startGameSession();
     });
   }
 
-  function start1MinTimer() {
-    document.getElementById("timer-display").classList.remove("hidden");
-    let timeLeft = 60;
-    
-    if (timerInterval) clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      document.getElementById("time-left").innerText = timeLeft;
-
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        document.getElementById("timer-display").innerText = "⚠️ Lyen an ekspire. Klike anba a pou jenerè yon nouvo.";
-        document.getElementById("copy-btn").innerText = "🔄 Jenerè Yon Nouvo Lyen";
-      }
-    }, 1000);
-  }
-
   function startGameSession() {
-    if (timerInterval) clearInterval(timerInterval);
     document.getElementById("welcome-screen").classList.add("hidden");
     document.getElementById("invite-screen").classList.add("hidden");
     document.getElementById("game-screen").classList.remove("hidden");
@@ -477,12 +410,14 @@
     loadQuestion(0);
 
     if (db) {
-      db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
-        const answers = snapshot.val();
-        if (answers && answers.p1 && answers.p2) {
-          showResults(answers);
-        }
-      });
+      try {
+        db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
+          const answers = snapshot.val();
+          if (answers && answers.p1 && answers.p2) {
+            showResults(answers);
+          }
+        });
+      } catch(e){}
     }
   }
 
@@ -526,18 +461,25 @@
       customText = document.getElementById("custom-input").value.trim();
     }
 
-    const myAnswer = {
+    mySavedAnswer = {
       option: selectedOptionIndex,
       text: customText,
-      name: userName || "Patnè"
+      name: userName || "Moun 1"
     };
 
     if (db) {
-      const playerKey = isHost ? "p1" : "p2";
-      db.ref("rooms/" + currentRoom + "/answers/" + playerKey).set(myAnswer);
+      try {
+        const playerKey = isHost ? "p1" : "p2";
+        db.ref("rooms/" + currentRoom + "/answers/" + playerKey).set(mySavedAnswer);
+      } catch(e){}
     }
 
     document.getElementById("status-waiting").classList.remove("hidden");
+
+    // Si Firebase pa reponn nan 3 segonn, li dirèkteman montre bilan an
+    setTimeout(() => {
+      showFallbackResults();
+    }, 3500);
   }
 
   function showResults(answers) {
@@ -551,6 +493,19 @@
     if (answers.p2.text) summary += `✍️ Repons ekri: "${answers.p2.text}"`;
 
     document.getElementById("custom-answers-summary").innerHTML = summary;
+  }
+
+  function showFallbackResults() {
+    if (!document.getElementById("game-screen").classList.contains("hidden")) {
+      document.getElementById("game-screen").classList.add("hidden");
+      document.getElementById("results-screen").classList.remove("hidden");
+
+      let summary = `<strong>${mySavedAnswer.name}</strong> te chwazi opsyon ${mySavedAnswer.option + 1}.<br>`;
+      if (mySavedAnswer.text) summary += `✍️ Repons ekri: "${mySavedAnswer.text}"<br><br>`;
+      summary += `<em>N ap tann repons patnè w la nan menm kòd chanm sa a!</em>`;
+
+      document.getElementById("custom-answers-summary").innerHTML = summary;
+    }
   }
 </script>
 
