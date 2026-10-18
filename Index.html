@@ -14,13 +14,10 @@
       --subtext: #94a3b8;
       --border-color: #2a364f;
       --gold: #fbbf24;
+      --green: #10b981;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -48,7 +45,6 @@
       color: var(--accent-color);
       font-size: 2.2rem;
       margin-bottom: 6px;
-      letter-spacing: 0.5px;
     }
 
     .tagline {
@@ -58,7 +54,6 @@
       font-weight: 600;
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .intro-box {
@@ -72,15 +67,8 @@
       color: #cbd5e1;
     }
 
-    .benefits-list {
-      margin: 15px 0;
-      padding-left: 20px;
-    }
-
-    .benefits-list li {
-      margin-bottom: 8px;
-      color: #e2e8f0;
-    }
+    .benefits-list { margin: 15px 0; padding-left: 20px; }
+    .benefits-list li { margin-bottom: 8px; color: #e2e8f0; }
 
     label {
       display: block;
@@ -100,12 +88,9 @@
       color: white;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
     }
 
-    input[type="text"]:focus, select:focus {
-      border-color: var(--accent-color);
-    }
+    input[type="text"]:focus, select:focus { border-color: var(--accent-color); }
 
     .btn {
       width: 100%;
@@ -119,22 +104,14 @@
       margin-top: 15px;
       font-weight: 700;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
     }
 
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-secondary { background: #334155; }
+    .btn-secondary:hover { background: #475569; }
 
-    .btn-secondary {
-      background: #334155;
-      box-shadow: none;
-    }
-
-    .btn-secondary:hover {
-      background: #475569;
-    }
+    .btn-green { background: var(--green); }
+    .btn-green:hover { background: #059669; }
 
     .progress-bar-container {
       width: 100%;
@@ -164,22 +141,16 @@
       cursor: pointer;
       font-size: 0.95rem;
       line-height: 1.4;
-      transition: all 0.2s ease;
     }
 
-    .option-btn:hover {
-      border-color: var(--accent-color);
-    }
-
+    .option-btn:hover { border-color: var(--accent-color); }
     .option-btn.selected {
       border-color: var(--accent-color);
       background: rgba(225, 29, 72, 0.15);
       font-weight: 600;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     .category-badge {
       display: inline-block;
@@ -192,11 +163,7 @@
       margin-bottom: 15px;
     }
 
-    .question-title {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
+    .question-title { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.5; }
 
     .status-box {
       background: #0b0f19;
@@ -207,6 +174,17 @@
       font-size: 0.9rem;
       margin-top: 15px;
       border: 1px dashed var(--accent-color);
+    }
+
+    .notification-success {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 15px;
     }
 
     .room-display {
@@ -230,12 +208,6 @@
       border-left: 4px solid var(--accent-color);
     }
 
-    .result-card h3 {
-      color: var(--accent-color);
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-
     .score-banner {
       text-align: center;
       background: linear-gradient(135deg, #e11d48, #881337);
@@ -244,21 +216,13 @@
       margin-bottom: 20px;
     }
 
-    .score-banner h2 {
-      font-size: 2.4rem;
-      color: white;
-    }
-
-    .score-banner p {
-      color: #fecdd3;
-      font-size: 0.95rem;
-    }
+    .score-banner h2 { font-size: 2.4rem; color: white; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- PAJ 1: AKÈY AK ENTWODIKSYON -->
+  <!-- PAJ 1: AKÈY AK FÒM KREYE OSWA RANTRE -->
   <div id="welcome-screen">
     <h1>✨ Sync Our Soul</h1>
     <p class="tagline">Espas Entim ak Kominikasyon pou Koup</p>
@@ -268,53 +232,63 @@
       <p style="margin-top: 6px;">
         <strong>Sync Our Soul</strong> se yon eksperyans ki baze sou terapi koup pou ede nou kase silans yo, re-enkande flanm pasyon an, epi pi byen konprann sa k nan fon nanm youn lòt.
       </p>
-      
-      <ul class="benefits-list">
-        <li>✨ <strong>Kominikasyon Pwofon:</strong> Eksprese sa w santi san okenn jijman.</li>
-        <li>🔥 <strong>Érotisme ak Intimité:</strong> Eksplore dezirè ak fantazi nou yo an libète.</li>
-        <li>🌱 <strong>Vizyon pou Fiti la:</strong> Bati yon pi bon konpatiblite jou pa jou.</li>
-      </ul>
     </div>
 
-    <label for="user-name">Non pa w / Siyen an:</label>
-    <input type="text" id="user-name" placeholder="Antre non w">
+    <!-- SI ITILIZATÈ A SÈVI AK YON LYEN ENVITASYON -->
+    <div id="join-from-link-box" class="hidden">
+      <p style="text-align: center; color: var(--gold); font-weight: 600; margin-bottom: 10px;">
+        📩 Ou resevwa yon envitasyon nan men <span id="inviter-name-display">patnè w la</span>!
+      </p>
+      <label for="user-name-invited">Non pa w / Siyen an:</label>
+      <input type="text" id="user-name-invited" placeholder="Antre non w pou w rantre">
+      <button class="btn btn-green" onclick="joinRoomFromLink()">Rantre nan Chanm lan</button>
+    </div>
 
-    <label for="distance-range">Ki kote nou chak abite an mwayèn?</label>
-    <select id="distance-range">
-      <option value="same_house">🏠 N ap viv nan menm kay la</option>
-      <option value="near">🏙️ Menm vil / Ti distans (Mwens pase 8 km)</option>
-      <option value="medium">🚗 Zòn diferan (Eks: Ant 8 km ak 50 km)</option>
-      <option value="far">✈️ Relasyon a gwo distans (Plis pase 50 km / Lòt peyi)</option>
-    </select>
+    <!-- SI SE YON MOUN K AP KREYE CHANM LAN KÒMANSE -->
+    <div id="create-box">
+      <label for="user-name">Non pa w / Siyen an:</label>
+      <input type="text" id="user-name" placeholder="Antre non w">
 
-    <div style="margin-top: 20px; display: flex; gap: 10px;">
+      <label for="partner-name">Non Moun w ap Envite a (Patnè w):</label>
+      <input type="text" id="partner-name" placeholder="Antre non patnè w la">
+
+      <label for="distance-range">Ki kote nou chak abite an mwayèn?</label>
+      <select id="distance-range">
+        <option value="same_house">🏠 N ap viv nan menm kay la</option>
+        <option value="near">🏙️ Menm vil / Ti distans (Mwens pase 8 km)</option>
+        <option value="medium">🚗 Zòn diferan (Eks: Ant 8 km ak 50 km)</option>
+        <option value="far">✈️ Relasyon a gwo distans (Plis pase 50 km / Lòt peyi)</option>
+      </select>
+
       <button class="btn" onclick="createNewRoom()">Lanse Yon Nouvo Chanm</button>
-      <button class="btn btn-secondary" onclick="showJoinInput()">Rantre ak yon Kòd</button>
-    </div>
-
-    <div id="join-code-box" class="hidden" style="margin-top: 15px;">
-      <input type="text" id="join-room-code" placeholder="Antre Kòd Envitasyon an (eg: SYNC-8492)">
-      <button class="btn" onclick="joinRoomWithCode()">Rantre nan Chanm lan</button>
     </div>
   </div>
 
-  <!-- PAJ 2: EKRAN ENVITASYON -->
+  <!-- PAJ 2: ENVITASYON AK WAITING ROOM -->
   <div id="invite-screen" class="hidden">
     <h2 style="text-align: center; color: var(--accent-color);">Chanm Vityèl Ou Pare!</h2>
     <p style="text-align: center; color: var(--subtext); margin-top: 5px;">
-      Voye kòd sa a oswa kopye envitasyon an pou w voye l bay patnè w la:
+      Voye envitasyon an bay <strong id="partner-name-display">patnè w la</strong>:
     </p>
 
     <div id="generated-room-code" class="room-display">SYNC-XXXX</div>
 
     <button class="btn" onclick="copyInvitation()">📋 Kopye Envitasyon WhatsApp</button>
     
-    <div class="status-box" id="waiting-partner-msg">
-      ⏳ N ap tann patnè w la rantre nan chanm lan...
+    <div id="waiting-status" class="status-box">
+      ⏳ N ap tann patnè w la klike sou lyen an pou l rantre...
     </div>
+
+    <div id="partner-connected-notif" class="notification-success hidden">
+      🎉 <span id="partner-connected-name">Patnè w la</span> fenk konekte! Nou tou de pare.
+    </div>
+
+    <button id="start-game-btn" class="btn btn-green hidden" onclick="triggerGameStart()" style="margin-top:15px;">
+      🚀 Lanse Jwèt la Kounye a!
+    </button>
   </div>
 
-  <!-- PAJ 3: EKRAN JWÈT LA -->
+  <!-- PAJ 3: JWÈT LA -->
   <div id="game-screen" class="hidden">
     <div class="progress-bar-container">
       <div id="progress-bar" class="progress-bar"></div>
@@ -348,15 +322,8 @@
     </div>
 
     <div class="result-card">
-      <h3>💬 Repons Pèsonalize ak Mesaj Kè ak Kè</h3>
+      <h3 style="color: var(--accent-color);">💬 Repons ak Mesaj Kè ak Kè</h3>
       <p id="custom-answers-summary" style="font-size: 0.95rem; color: #cbd5e1;"></p>
-    </div>
-
-    <div class="result-card" style="border-left-color: #3b82f6;">
-      <h3 style="color: #60a5fa;">💡 Pwospektiv ak Konsèy Koup</h3>
-      <p id="therapy-advice" style="font-size: 0.95rem; color: #cbd5e1;">
-        Kouri dèyè konpreyansyon se pi gwo kado nou ka bay relasyon an. Menm kote ki gen diferans sou opsyon yo se yon bèl okazyon pou nou koute ak plis afeksyon epi dekouvri nouvo fason pou n rann lòt la kontan.
-      </p>
     </div>
 
     <button class="btn" onclick="location.reload()" style="background: #334155; margin-top: 20px;">Fè Yon Lòt Sesyon</button>
@@ -368,18 +335,22 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 <script>
-  // Konfigirasyon Firebase ki konekte ak baz done syncoursoul ou an
   const firebaseConfig = {
     databaseURL: "https://syncoursoul-default-rtdb.firebaseio.com"
   };
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+  let db = null;
+  try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.database();
+  } catch(e) {}
 
   let currentRoom = "";
   let userName = "";
+  let partnerName = "";
   let selectedOptionIndex = null;
   let isHost = false;
+  let roomUrlData = null;
 
   const sampleQuestions = [
     {
@@ -407,67 +378,99 @@
   window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const roomFromUrl = urlParams.get('room');
+    const inviterFromUrl = urlParams.get('inviter');
+
     if (roomFromUrl) {
-      document.getElementById("join-code-box").classList.remove("hidden");
-      document.getElementById("join-room-code").value = roomFromUrl;
+      roomUrlData = roomFromUrl;
+      document.getElementById("create-box").classList.add("hidden");
+      document.getElementById("join-from-link-box").classList.remove("hidden");
+      if (inviterFromUrl) {
+        document.getElementById("inviter-name-display").innerText = inviterFromUrl;
+      }
     }
   };
 
   function createNewRoom() {
     userName = document.getElementById("user-name").value.trim();
-    if (!userName) return alert("Tanpri antre non w!");
+    partnerName = document.getElementById("partner-name").value.trim();
+
+    if (!userName || !partnerName) {
+      return alert("Tanpri antre non w ak non moun w ap envite a!");
+    }
 
     isHost = true;
     currentRoom = "SYNC-" + Math.floor(1000 + Math.random() * 9000);
     document.getElementById("generated-room-code").innerText = currentRoom;
+    document.getElementById("partner-name-display").innerText = partnerName;
 
-    const questionIndex = Math.floor(Math.random() * sampleQuestions.length);
-    db.ref("rooms/" + currentRoom).set({
-      status: "waiting",
-      qIndex: questionIndex,
-      p1_name: userName
-    });
+    if (db) {
+      db.ref("rooms/" + currentRoom).set({
+        status: "waiting",
+        qIndex: 0,
+        p1_name: userName,
+        p2_target_name: partnerName
+      });
+
+      // Koute si patnè a konekte pou montre Notifikasyon an
+      db.ref("rooms/" + currentRoom + "/p2_name").on("value", snapshot => {
+        if (snapshot.exists()) {
+          const joinedName = snapshot.val();
+          document.getElementById("waiting-status").classList.add("hidden");
+          document.getElementById("partner-connected-notif").classList.remove("hidden");
+          document.getElementById("partner-connected-name").innerText = joinedName;
+          document.getElementById("start-game-btn").classList.remove("hidden");
+        }
+      });
+
+      // Koute si moun nan klike sou "Lanse Jwèt la"
+      db.ref("rooms/" + currentRoom + "/status").on("value", snapshot => {
+        if (snapshot.val() === "playing") {
+          startGameSession();
+        }
+      });
+    }
 
     document.getElementById("welcome-screen").classList.add("hidden");
     document.getElementById("invite-screen").classList.remove("hidden");
-
-    db.ref("rooms/" + currentRoom + "/p2_name").on("value", snapshot => {
-      if (snapshot.exists()) {
-        db.ref("rooms/" + currentRoom).update({ status: "playing" });
-        startGameSession();
-      }
-    });
   }
 
-  function showJoinInput() {
-    document.getElementById("join-code-box").classList.toggle("hidden");
-  }
+  function joinRoomFromLink() {
+    userName = document.getElementById("user-name-invited").value.trim();
+    if (!userName) return alert("Tanpri antre non w!");
 
-  function joinRoomWithCode() {
-    userName = document.getElementById("user-name").value.trim();
-    const code = document.getElementById("join-room-code").value.trim().toUpperCase();
+    currentRoom = roomUrlData;
+    if (db) {
+      db.ref("rooms/" + currentRoom).update({
+        p2_name: userName
+      });
 
-    if (!userName || !code) return alert("Antre non w ak kòd la!");
+      db.ref("rooms/" + currentRoom + "/status").on("value", snapshot => {
+        if (snapshot.val() === "playing") {
+          startGameSession();
+        }
+      });
+    }
 
-    currentRoom = code;
-    db.ref("rooms/" + currentRoom).once("value", snapshot => {
-      if (snapshot.exists()) {
-        db.ref("rooms/" + currentRoom).update({
-          p2_name: userName,
-          status: "playing"
-        });
-        startGameSession();
-      } else {
-        alert("Chanm sa a pa egziste! Tcheke kòd la byen.");
-      }
-    });
+    document.getElementById("welcome-screen").classList.add("hidden");
+    document.getElementById("invite-screen").classList.remove("hidden");
+    document.getElementById("waiting-status").innerText = "⏳ Ou konekte! N ap tann moun ki kreye chanm lan klike sou 'Lanse Jwèt la'...";
   }
 
   function copyInvitation() {
-    const inviteText = `Cheri, mwen envite w nan yon eksperyans entim sou ✨ Sync Our Soul ✨.\n\nRantre ak kòd sa a: *${currentRoom}*\nLyen dirèk: ${window.location.href}?room=${currentRoom}`;
+    const inviteText = `${partnerName}, mwen envite w nan yon eksperyans entim sou ✨ Sync Our Soul ✨ pou n jwe ak pale sou relasyon nou.\n\nRantre ak lyen dirèk sa a: ${window.location.origin}${window.location.pathname}?room=${currentRoom}&inviter=${encodeURIComponent(userName)}`;
+    
     navigator.clipboard.writeText(inviteText).then(() => {
-      alert("Envitasyon an kopye! Voye l bay patnè w la sou WhatsApp.");
+      alert(`Envitasyon an kopye pou ${partnerName}! Voye l ba li sou WhatsApp.`);
+    }).catch(() => {
+      alert("Kopye lyen an nan navigatè w la pou w voye l bay patnè w la.");
     });
+  }
+
+  function triggerGameStart() {
+    if (db) {
+      db.ref("rooms/" + currentRoom).update({ status: "playing" });
+    }
+    startGameSession();
   }
 
   function startGameSession() {
@@ -475,17 +478,16 @@
     document.getElementById("invite-screen").classList.add("hidden");
     document.getElementById("game-screen").classList.remove("hidden");
 
-    db.ref("rooms/" + currentRoom + "/qIndex").once("value", snapshot => {
-      const qIndex = snapshot.val();
-      loadQuestion(qIndex);
-    });
+    loadQuestion(0);
 
-    db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
-      const answers = snapshot.val();
-      if (answers && answers.p1 && answers.p2) {
-        showResults(answers);
-      }
-    });
+    if (db) {
+      db.ref("rooms/" + currentRoom + "/answers").on("value", snapshot => {
+        const answers = snapshot.val();
+        if (answers && answers.p1 && answers.p2) {
+          showResults(answers);
+        }
+      });
+    }
   }
 
   function loadQuestion(qIndex) {
@@ -521,19 +523,23 @@
   }
 
   function submitAnswer() {
-    if (selectedOptionIndex === null) return alert("Chwazi yon opsyon!");
+    if (selectedOptionIndex === null) return alert("Tanpri chwazi yon opsyon anvan!");
 
     let customText = "";
     if (selectedOptionIndex === 3) {
       customText = document.getElementById("custom-input").value.trim();
     }
 
-    const playerKey = isHost ? "p1" : "p2";
-    db.ref("rooms/" + currentRoom + "/answers/" + playerKey).set({
+    const myAnswer = {
       option: selectedOptionIndex,
       text: customText,
-      name: userName
-    });
+      name: userName || "Patnè"
+    };
+
+    if (db) {
+      const playerKey = isHost ? "p1" : "p2";
+      db.ref("rooms/" + currentRoom + "/answers/" + playerKey).set(myAnswer);
+    }
 
     document.getElementById("status-waiting").classList.remove("hidden");
   }
